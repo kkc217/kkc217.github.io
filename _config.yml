@@ -151,9 +151,9 @@ yat:
 #   - about.md
 
 # Page default value
-# defaults:
+defaults:
   home:
-    heading: "Your awesome heading"
+    heading: "ㄱㄴㄷ"
     subheading: "Your awesome subheading"
     banner: "Your image url"
 
