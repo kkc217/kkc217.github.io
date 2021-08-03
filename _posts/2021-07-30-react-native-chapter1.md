@@ -3,7 +3,7 @@ layout: post
 title: 처음 배우는 리액트 네이티브 ch.01
 subtitle: 리액트 네이티브란?
 categories: React Native
-tags: [React Native, Study]
+tags: [React Native, 스터디]
 ---
 
 This note demonstrates some of what [Markdown][1] is capable of doing.
