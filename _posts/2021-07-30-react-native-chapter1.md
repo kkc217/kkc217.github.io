@@ -9,6 +9,10 @@ tags: [React Native, 창업 동아리, 스터디]
 
 ## React Native
 
+# React Native
+
+### React Native
+
 사용자 인터페이스를 만드는 리액트에 기반을 두고 제작됨.  
 But, 리액트와 달리 iOS와 안드로이드에서 동작하는 네이티브 <span style="color:coral">모바일 애플리케이션</span>을 만드는 **자바스크립트 프레임워크**
 
