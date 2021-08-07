@@ -30,5 +30,5 @@ But, 리액트와 달리 iOS와 안드로이드에서 동작하는 네이티브 
 
 동작 방식
 ===
-## 1. 브릿지 <span style="font-size:15px">bridge</span>
+### 1. 브릿지 <span style="font-size:15px">bridge</span>
   자바스크립트 코드를 이용해 네이티브 계층과 통신할 수 있도록 연결하는 역할을 함.
