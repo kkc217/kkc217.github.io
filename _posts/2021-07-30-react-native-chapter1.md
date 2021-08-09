@@ -6,7 +6,7 @@ categories: React Native
 tags: [React Native, 창업 동아리, 스터디]
 ---
 
-<link rel="stylesheet" type="text/css" href="kkc217.github.io/assets/css/posts.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/posts.css">
 
 ## React Native
 사용자 인터페이스를 만드는 리액트에 기반을 두고 제작됨.  
@@ -47,5 +47,5 @@ But, 리액트와 달리 iOS와 안드로이드에서 동작하는 네이티브 
   - <span style="font-size:17px">Native Modult</span>  
       <span style="opacity:0.5">각 모듈마다 자체 스레드가 있음.</span>
 
-  <img class="arrow" src="kkc217.github.io/assets/images/icons/arrow.png">
+  <img class="arrow" src="/assets/images/icons/arrow.png">
 </span>
