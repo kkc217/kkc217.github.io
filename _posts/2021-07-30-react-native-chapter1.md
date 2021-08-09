@@ -2,8 +2,8 @@
 layout: post
 title: 처음 배우는 리액트 네이티브 1장
 subtitle: 리액트 네이티브란?
-categories: React Native
-tags: [ReactNative, 창업동아리, 스터디]
+categories: ReactNative
+tags: [React Native, 창업 동아리, 스터디]
 ---
 
 ## React Native
