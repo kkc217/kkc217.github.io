@@ -45,7 +45,12 @@ But, 리액트와 달리 iOS와 안드로이드에서 동작하는 네이티브 
   - <span style="font-size:17px">Native Modult</span>  
       <span style="opacity:0.5">각 모듈마다 자체 스레드가 있음.</span>  
 
-<img src="/assets/images/banners/test.png" style="filter: invert(100%)">
-
 <kbd style="color:coral">&#8594;</kbd> 기기와 통신하는 모든 자바스크립트의 기능을 분리된 스레드로 처리하여 성능이 향상됨.
+
+
+### 2. 가상 DOM  
+  가상 DOM이 존재하여 데이터에 변화가 있는 경우 가상 DOM과 실제 DOM을 비교하여 차이점이 있는 부분만 실제 DOM에 적용함.
+
   
+### 3. JSX <span style="font-size:15px">JavaScript XML</span>
+  자바스크립트 코드보다 가독성이 더 뛰어나며, 오류 검사에도 장점이 있음.
