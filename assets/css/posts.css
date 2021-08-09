@@ -1,4 +1,4 @@
 .arrow{
-    size: 100px;
-    filter: invert(100%);
+    width: 100px;
+    object-fit: contain;
 }
