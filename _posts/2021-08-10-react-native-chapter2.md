@@ -10,4 +10,4 @@ tags: [ReactNative, 창업동아리, 스터디]
 
 ### 1. Node.js 설치
   이전에 설치했었기에 그대로 사용함.  
-  <img src="/assets/images/210810_ch02/nodeJs_version_check.PNG">
+  <img src="/assets/images/210810_ch02/nodeJs_version_check.PNG" style="position:relative; left:0px">
