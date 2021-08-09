@@ -2,8 +2,8 @@
 layout: post
 title: 처음 배우는 리액트 네이티브 2장
 subtitle: 리액트 네이티브 시작하기
-categories: React Native
-tags: [ReactNative, 창업동아리, 스터디]
+categories: ReactNative
+tags: [React Native, 창업 동아리, 스터디]
 ---
 
 ## 2.1 개발 환경 준비하기
