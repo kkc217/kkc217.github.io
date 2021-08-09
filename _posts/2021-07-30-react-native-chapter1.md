@@ -40,5 +40,5 @@ But, 리액트와 달리 iOS와 안드로이드에서 동작하는 네이티브 
   - <span style="font-size:17px; opacity:0.5">JavaScript Thread</span>  
       자바스크립트 코드가 실행되는 곳 (보통 리액트 코드)
   - <span style="font-size:17px; opacity:0.5">Main Thread</span>  
-      UI를 담당.zz
+      UI를 담당.z
     
