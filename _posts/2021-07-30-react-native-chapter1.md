@@ -45,7 +45,6 @@ But, 리액트와 달리 iOS와 안드로이드에서 동작하는 네이티브 
   - <span style="font-size:17px">Shadow Thread</span>  
       <span style="opacity:0.5">레이아웃을 계산하는 데 사용하는 백그라운드 스레드</span>
   - <span style="font-size:17px">Native Modult</span>  
-      <span style="opacity:0.5">각 모듈마다 자체 스레드가 있음.</span>
+      <span style="opacity:0.5">각 모듈마다 자체 스레드가 있음.zzzz</span>
 
   <img class="arrow" src="/assets/images/icons/arrow.png">
-  
