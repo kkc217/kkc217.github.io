@@ -55,5 +55,6 @@ tags: [React Native, 창업 동아리, 스터디]
 
 
 <br/><br/>
----
+<span style="font-size:10px">-END-</span>
+
 ---
