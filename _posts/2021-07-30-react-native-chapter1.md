@@ -6,6 +6,7 @@ categories: React Native
 tags: [React Native, 창업 동아리, 스터디]
 ---
 
+<link rel="stylesheet" type="text/css" href="../assets/css/posts.css">
 
 ## React Native
 사용자 인터페이스를 만드는 리액트에 기반을 두고 제작됨.  
@@ -39,6 +40,12 @@ But, 리액트와 달리 iOS와 안드로이드에서 동작하는 네이티브 
 
   - <span style="font-size:17px">JavaScript Thread</span>  
       <span style="opacity:0.5">자바스크립트 코드가 실행되는 곳 (보통 리액트 코드)</span>
-  - <span style="font-size:17px; opacity:0.5">Main Thread</span>  
-      UI를 담당.z
-    
+  - <span style="font-size:17px">Main Thread</span>  
+      <span style="opacity:0.5">UI를 담당.</span>
+  - <span style="font-size:17px">Shadow Thread</span>  
+      <span style="opacity:0.5">레이아웃을 계산하는 데 사용하는 백그라운드 스레드</span>
+  - <span style="font-size:17px">Native Modult</span>  
+      <span style="opacity:0.5">각 모듈마다 자체 스레드가 있음.</span>
+
+  <img class="arrow" src="../asset/../assets/images/icons/arrow.png">
+</span>
