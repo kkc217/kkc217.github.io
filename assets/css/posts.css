@@ -2,4 +2,5 @@
     width: 20px;
     height: 20px;
     object-fit: fill;
+    filter: invert(100%);
 }
