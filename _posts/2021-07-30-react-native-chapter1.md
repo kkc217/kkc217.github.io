@@ -37,8 +37,8 @@ But, 리액트와 달리 iOS와 안드로이드에서 동작하는 네이티브 
 ### 1. 브릿지 <span style="font-size:15px">bridge</span>
   <span style="color:coral">자바스크립트</span> 코드를 이용해 네이티브 계층과 통신할 수 있도록 연결하는 역할을 함.
 
-  - <span style="font-size:20px opacity:0.6">JavaScript Thread</span>  
+  - <span style="font-size:17px; opacity:0.5">JavaScript Thread</span>  
       자바스크립트 코드가 실행되는 곳 (보통 리액트 코드)
-  - <span style="font-size:20px opacity:0.6">Main Thread</span>  
+  - <span style="font-size:17px; opacity:0.5">Main Thread</span>  
       UI를 담당.zz
     
