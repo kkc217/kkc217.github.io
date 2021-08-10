@@ -45,12 +45,12 @@ tags: [React Native, 창업 동아리, 스터디]
 
 ### 1. Expo
   * 리액트 네이티브 처음 시작하는 사람도 쉽게 사용할 수 있으며, 완성된 프로젝트를 배포 및 관리할 수   있는 다양한 기능을 제공함.
-  * But, Expo에서 제공하는 API만 사용할 수 있음. + 네이티브 모듈을 추가로 만들어서 사용하는 것이 <span style="color:coral">불가능</span>함.
+  * But, Expo에서 제공하는 API만 사용할 수 있음. + 네이티브 모듈을 추가로 만들어서 사용하는 것이 `불가능`함.
 
   <br/>
 
 
-  <div style="font-size:1.2em">&nbsp;&nbsp;&nbsp;&nbsp;(1) <span style="color:cornflowerblue;">expo-cli 설치</span></div>
+  <div style="font-size:1.2em">(1) <span style="color:cornflowerblue;">expo-cli 설치</span></div>
 
   ```
   npm install --global expo-cli
@@ -58,24 +58,91 @@ tags: [React Native, 창업 동아리, 스터디]
   <br/>
 
 
-  <div style="font-size:1.2em">&nbsp;&nbsp;&nbsp;&nbsp;(2) <span style="color:cornflowerblue;">Expo 프로젝트 생성</span></div>
+  <div style="font-size:1.2em">(2) <span style="color:cornflowerblue;">Expo 프로젝트 생성</span></div>
 
   ```
   expo init my-first-expo  //'my-first-expo'라는 이름의 프로젝트 생성
   ```
   \>> <span style="color:#00d4f4">expo init</span> : Expo 프로젝트 생성 명령어  
-  <img src="/assets/images/210810_ch02/create_first_expo_project.PNG" style="width:450px; object-fit:contain">  
-  <span style="font-size:0.9em">! blank 선택지로 생성</span>
+  <img src="/assets/images/210810_ch02/create_first_expo_project.PNG" style="width:600px; object-fit:contain">  
+  <span style="font-size:0.9em; opacity:0.7">! blank 선택지로 생성</span>
   <br/>
 
 
-  <div style="font-size:1.2em">&nbsp;&nbsp;&nbsp;&nbsp;(3) <span style="color:cornflowerblue;">Expo 프로젝트 실행</span></div>
-  
+  <div style="font-size:1.2em">(3) <span style="color:cornflowerblue;">Expo 프로젝트 실행</span></div>
+
   ```
   cd my-first-expo
   npm start
   ```
   <img src="/assets/images/210810_ch02/expo_run_cmd.PNG" style="width:640px; object-fit:contain">  
+  <br/>
+
+
+### <span style="color:#cd853f">Plus.</span> eject 명령어 <span style="font-size:11px; opacity:0.6">내보내기</span>
+  Expo는 개발자의 생산성을 높여준다는 장점이 있지만, 이로 인해 일부 기능을 사용하는데 제한이 있어 `CLI 프로젝트로 변경`해야 하는 상황이 발생하는데 이 때 사용하는 명령어가 eject이다.  
+  <span style="font-size:0.9em; opacity:0.7">! Expo는 JavaScript로 앱을 작성하고, eject는 이를 React Native 코드로 바꿔준다.</span>
+
+  * <span style="color:coral; font-weight:bold">주의</span> 변경된 CLI 프로젝트는 다시 Expo 프로젝트로 돌아올 수 없다.
+  * 이와 관련된 내용은 뒷부분이나 따로 빼서 다루도록 하겠다.
+
+
+<br/>
+
+---
+
+
+### 2. 리액트 네이티브 CLI
+  * Expo와 반대의 장단점을 가짐.
+  * 필요한 기능이 있을 경우 모듈을 `직접 만들어 사용`할 수 있음.
+
+  <br/>
+
+
+  <div style="font-size:1.2em">(1) <span style="color:cornflowerblue;">프로젝트 생성</span></div>
+
+  ```
+  npx react-native init MyFirstCLI  //'<yFirstCLI'라는 이름의 프로젝트 생성
+  ```
+  \>> <span style="color:#00d4f4">npx react-native init</span> : CLI 프로젝트 생성  
+  <div style="font-size:0.9em"><span style="color:coral; font-weight:bold">주의</span> 리액트 네이티브 CLI로 프로젝트를 생성할 때는 프로젝트 이름으로 `영문`과 `숫자`만 입력할 수 있음.</div>  
+  <br/>
+
+
+  <div style="font-size:1.2em">(2) <span style="color:cornflowerblue;">프로젝트 실행</span></div>
+
+  ```
+  cd MyFirstCLI
+  npm run android //또는 npm run ios
+  ```
+  명령 프롬프트 창 하나가 추가로 열리고 Metro가 실행됨.  
+  <br/>
+  <span style="color:#cd853f">Plus.</span> Metro  
+  리액트 네이티브를 위한 자바스크립트 번들러로 네이티브가 실행될 때마다 자바스크립트 파일들을 단일 파일로 컴파일함.  
+  <span style="color:#cd853f">Plus.</span> 번들러 <span style="font-size:0.8em; opacity:0.7">bundler</span>  
+  사용자의 코드와 종속성을 하나의 자바스크립트 파일에 통합하는 도구
+  <br/>
+
+
+  <div style="font-size:1.2em">(3) <span style="color:cornflowerblue;">메인 파일 변경</span></div>
+
+  <img src="/assets/images/210810_ch02/main_file_setup.PNG" style="width:640px; object-fit:contain">
+
+  내용이 변경될 App.js 파일을 src 폴더에 만들어 저장하고 처음에 만들어진 App.js에서 연결시킴.
+
+
+<br/>
+
+---
+
+
+### 참고  
+* Expo eject 명령어  
+https://velog.io/@max9106/React-Native-Expo-eject-v8k2akbliq
+https://floydkim.netlify.app/development/2019-05-04-React%20Native%20:%20EXPO%EC%99%80%20%EC%9D%B4%EB%B3%84%ED%95%98%EA%B8%B0/
+* 자바스크립트 번들러
+https://gist.github.com/jeffminsungkim/9cd5c592dfe39a5eaae93ffcc1818cef
+
 
 <div style="font-size:13px; text-align:right">
 <br/><br/>
