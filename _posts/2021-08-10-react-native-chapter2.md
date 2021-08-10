@@ -27,6 +27,9 @@ tags: [React Native, 창업 동아리, 스터디]
   <img src="/assets/images/210810_ch02/AndroidStudio_user_variable_change.PNG" style="position:relative; left:0px">
   <img src="/assets/images/210810_ch02/AndroidStudio_system_variable_change.PNG" style="position:relative; left:0px">
 
+### 5. 안드로이드 스튜디오 에뮬레이터로 가상 기기 만들기
+  <img src="/assets/images/210810_ch02/AndroidStudio_emulator.PNG" style="position:relative; left:0px">
+
 <div style="font-size:13px; text-align:right">
 <br/><br/>
 END.</div>
