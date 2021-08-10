@@ -3,7 +3,7 @@
   <label for="theme-switch">
     <div class="toggle"></div>
     <div class="names">
-      <p class="light">Light1</p>
+      <p class="light">Light</p>
       <p class="dark">Dark</p>
     </div>
   </label>
@@ -100,7 +100,7 @@
     } else {
       var nightShift = themeData.nightShift;
       if (nightShift === undefined) {
-        nightShift = nightModeOption === 'off';
+        nightShift = nightModeOption === 'on';
       }
       handleThemeToggle(nightShift);
     }
