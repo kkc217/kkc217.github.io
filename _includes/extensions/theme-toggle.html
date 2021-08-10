@@ -41,7 +41,7 @@
     function handleThemeToggle(nightShift) {
       themeData.nightShift = nightShift;
       saveThemeData(themeData);
-      html.dataset.theme = nightShift ? 'dark' : 'light';
+      html.dataset.theme = nightShift ? 'light' : 'dark';
       setTimeout(function() {
         sw.checked = nightShift ? true : false;
       }, 50);
