@@ -119,6 +119,7 @@ tags: [React Native, 창업 동아리, 스터디]
   <br/>
   <span style="color:#cd853f">Plus.</span> Metro  
   리액트 네이티브를 위한 자바스크립트 번들러로 네이티브가 실행될 때마다 자바스크립트 파일들을 단일 파일로 컴파일함.  
+  
   <span style="color:#cd853f">Plus.</span> 번들러 <span style="font-size:0.8em; opacity:0.7">bundler</span>  
   사용자의 코드와 종속성을 하나의 자바스크립트 파일에 통합하는 도구
   <br/>
