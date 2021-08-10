@@ -48,7 +48,7 @@ tags: [React Native, 창업 동아리, 스터디]
   * But, Expo에서 제공하는 API만 사용할 수 있음. + 네이티브 모듈을 추가로 만들어서 사용하는 것이 불가능함.
 
 
-  #### <span style="color:cadetblue">expo-cli 설치</span>
+  #### expo-cli 설치
 
   ```
   npm install --global expo-cli
