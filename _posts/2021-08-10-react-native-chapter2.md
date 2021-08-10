@@ -18,7 +18,7 @@ tags: [React Native, 창업 동아리, 스터디]
 
 ### 3. 자바 설치
   기존의 상위 버전을 그대로 사용할 경우 오류가 발생하여 JAVA 14.0.2를 설치하여 사용함.  
-  <img src="/assets/images/210810_ch02/java_version_check.PNG" style="position:relative; left:0px">
+  <img src="/assets/images/210810_ch02/java_version_check.PNG" style="position:relative; left:0px" style="width:450px; object-fit:contain">
 
 ### 4. 안드로이드 스튜디오 설치
     https://bit.ly/android-ide-download
