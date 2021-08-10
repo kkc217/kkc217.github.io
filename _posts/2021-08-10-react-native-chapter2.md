@@ -53,6 +53,7 @@ tags: [React Native, 창업 동아리, 스터디]
   ```
   npm install --global expo-cli
   ```
+  <br/>
 
   &nbsp;&nbsp;&nbsp;&nbsp; <div style="font-size:1.2em">(2) <span style="color:cornflowerblue;">Expo 프로젝트 생성</span></div>
 ```
@@ -61,7 +62,8 @@ expo init my-first-expo  //'my-first-expo'라는 이름의 프로젝트 생성
   \>> <span style="color:#00d4f4">expo init</span> : Expo 프로젝트 생성 명령어  
   <img src="/assets/images/210810_ch02/create_first_expo_project.PNG" style="width:450px; object-fit:contain">  
   <span style="font-size:0.9em">! blank 선택지로 생성</span>
-
+  <br/>
+  
   &nbsp;&nbsp;&nbsp;&nbsp; <div style="font-size:1.2em">(3) <span style="color:cornflowerblue;">Expo 프로젝트 실행</span></div>
   ```
   cd my-first-expo
