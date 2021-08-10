@@ -3,7 +3,7 @@
   <label for="theme-switch">
     <div class="toggle"></div>
     <div class="names">
-      <p class="light">Light</p>
+      <p class="light">Light1</p>
       <p class="dark">Dark</p>
     </div>
   </label>
@@ -41,7 +41,7 @@
     function handleThemeToggle(nightShift) {
       themeData.nightShift = nightShift;
       saveThemeData(themeData);
-      html.dataset.theme = nightShift ? 'light' : 'dark';
+      html.dataset.theme = nightShift ? 'dark' : 'light';
       setTimeout(function() {
         sw.checked = nightShift ? true : false;
       }, 50);
@@ -100,7 +100,7 @@
     } else {
       var nightShift = themeData.nightShift;
       if (nightShift === undefined) {
-        nightShift = nightModeOption === 'on';
+        nightShift = nightModeOption === 'off';
       }
       handleThemeToggle(nightShift);
     }
