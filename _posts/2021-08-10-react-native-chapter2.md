@@ -66,7 +66,7 @@ tags: [React Native, 창업 동아리, 스터디]
   \>> <span style="color:#00d4f4">expo init</span> : Expo 프로젝트 생성 명령어  
   <img src="/assets/images/210810_ch02/create_first_expo_project.PNG" style="width:600px; object-fit:contain">  
   <span style="font-size:0.9em; opacity:0.7">! blank 선택지로 생성</span>
-  <br/>
+  <br/><br/>
 
 
   <div style="font-size:1.2em">(3) <span style="color:cornflowerblue;">Expo 프로젝트 실행</span></div>
@@ -76,7 +76,6 @@ tags: [React Native, 창업 동아리, 스터디]
   npm start
   ```
   <img src="/assets/images/210810_ch02/expo_run_cmd.PNG" style="width:640px; object-fit:contain">  
-  <br/>
 
 
 ### <span style="color:#cd853f">Plus.</span> eject 명령어 <span style="font-size:11px; opacity:0.6">내보내기</span>
@@ -122,7 +121,7 @@ tags: [React Native, 창업 동아리, 스터디]
   
   <span style="color:#cd853f">Plus.</span> 번들러 <span style="font-size:0.8em; opacity:0.7">bundler</span>  
   사용자의 코드와 종속성을 하나의 자바스크립트 파일에 통합하는 도구
-  <br/>
+  <br/><br/>
 
 
   <div style="font-size:1.2em">(3) <span style="color:cornflowerblue;">메인 파일 변경</span></div>
