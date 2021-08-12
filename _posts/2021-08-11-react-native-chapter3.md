@@ -176,6 +176,37 @@ export default function App() {
 
   JSX의 주석은 {/* \*/}를 사용해야하지만, 태그 안에서는 자바스크립트처럼 //나 /* \*/를 사용할 수 있음.
 
+<br/>
+
+<div style="font-size:1.2em; color:cornflowerblue;">스타일링</div>
+
+  * HTML의 style과는 달리 문자열로 입력하는 거시 아니라 객체 형태로 입력해야 함.
+  * 카멜 표기법(camel case)으로 작성해야 함.
+  
+```javascript
+export default function App() {
+  return (
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <Text>Hi! React Native!</Text>
+    </View>
+  );
+}
+```
+
+
+<br/>
+
+---
+
+
+## 3.2 컴포넌트
 
 
 
@@ -187,7 +218,7 @@ export default function App() {
 
 
 ### 참고  
-* View vs. Fragment
+* View vs. Fragment  
 https://www.reddit.com/r/reactnative/comments/cjoz9g/fragment_vs_view_tag/
 
 <div style="font-size:13px; text-align:right">
