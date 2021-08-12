@@ -47,13 +47,13 @@ tags: [React Native, 창업 동아리, 스터디]
   ```
   <br/>
 
-  <span style="color:#f7df1e; font-weight:bold; font-size:1.1em; font-height:0.5">View</span>  
+  <span style="color:#f7df1e; font-weight:bold; font-size:1.1em; font-height:0.5">View</span>
   * UI를 구성하는 가장 기본적인 요소
   * \<div>와 비슷한 역할
   * 'react-native'의 View를 import해야 함.  
   <br/>
 
-  <span style="color:#f7df1e; font-weight:bold; font-size:1.1em; font-height:0.5">Fragment</span>  
+  <span style="color:#f7df1e; font-weight:bold; font-size:1.1em; font-height:0.5">Fragment</span>
   * View와 달리 styling이나 layout을 설정하는 목적이 없이 단지 구분하기 위한 목적으로만 사용
   * 'react'의 Fragment를 import해야 함.  
   <br/>
@@ -92,6 +92,92 @@ export default function App() {
   );
 }
 ```
+
+
+<br/>
+
+
+### 3. 자바스크립트 조건문
+자바스크립트의 조건문을 이용할 수 있지만, 복잡한 조건인 경우 `JSX 밖에서` 조건에 따른 값을 설정하고 `JSX 내에서` 사용하는 조건문에서는 최대한 간단하게 작성하는 것이 깔끔함.  
+<br/>
+
+<div style="font-size:1.2em; color:cornflowerblue;">if 조건문</div>
+즉시실행함수 형태로 작성해야 함.
+
+```javascript
+export default function App() {
+  const name = 'BeomCheol';
+  return (
+    <View>
+      <Text>
+        {(() => {
+          if (name === 'Hanbit') return 'My name is Hanbit';
+          else if (name === 'BeomCheol') return 'My name is BeomCheol';
+          else return 'My name is React Native';
+        })()}
+      </Text>
+    <StatusBar style="auto" />
+    </View>
+  );
+}
+```
+
+<br/>
+
+<div style="font-size:1.2em; color:cornflowerblue;">삼항 연산자</div>
+
+```javascript
+export default function App() {
+  const name = 'BeomCheol';
+  return (
+    <View>
+      <Text>
+        My name is {name === 'BeomCheol' ? 'BeomCheol Kim' : 'React Native'}
+      </Text>
+    <StatusBar style="auto" />
+    </View>
+  );
+}
+```
+
+<br/>
+
+<div style="font-size:1.2em; color:cornflowerblue;">AND 연산자와 OR 연산자</div>
+
+  * AND 연산자: 앞의 조건이 참일 때 뒤의 내용이 나타나고, 거짓인 경우 나타나지 않음.
+  * OR 연산자: `앞의 조건이 거짓인 경우` 내용이 나타나고, 참인 경우 나타나지 않음.
+
+```javascript
+export default function App() {
+  const name = 'BeomCheol';
+  return (
+    <View>
+      {name === 'BeomCheol' && (
+        <Text>My name is BeomCheol</Text>
+      )}
+      {name !== 'BeomCheol' && (
+        <Text>My name is no BeomCheol</Text>
+      )}
+    <StatusBar style="auto" />
+    </View>
+  );
+}
+```
+
+<br/>
+
+<div style="font-size:1.2em; color:cornflowerblue;">null과 undefined</div>
+
+  null은 허용하지만, undefined는 `오류가 발생`함.
+
+<br/>
+
+<div style="font-size:1.2em; color:cornflowerblue;">주석</div>
+
+  JSX의 주석은 {/* \*/}를 사용해야하지만, 태그 안에서는 자바스크립트처럼 //나 /* \*/를 사용할 수 있음.
+
+
+
 
 <br/>
 
