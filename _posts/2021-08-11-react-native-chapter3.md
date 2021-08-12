@@ -25,7 +25,7 @@ tags: [React Native, 창업 동아리, 스터디]
 ### 1. 하나의 부모
   * JSX에서는 여러 개의 요소를 표현할 경우 반드시 하나의 부모로 감싸야 함.<br/>
   
-  <span style="color:coral">잘못된 예시</span>
+  <span style="color:coral; line-height:0.8">잘못된 예시</span>
   ```javascript
   export default function App() {
       return (
@@ -34,7 +34,7 @@ tags: [React Native, 창업 동아리, 스터디]
       );
   }
   ``` 
-  <br/><span style="color:coral">옳은 예시</span>
+  <br/><span style="color:coral; line-height:0.6">옳은 예시</span>
   ```javascript
   export default function App() {
       return (
@@ -47,17 +47,17 @@ tags: [React Native, 창업 동아리, 스터디]
   ```
   <br/>
 
-  <span style="color:#f7df1e">View</span>  
+  <span style="color:#f7df1e; font-weight:bold; font-size:1.1em">View</span>  
   * UI를 구성하는 가장 기본적인 요소
   * \<div>와 비슷한 역할
   * 'react-native'의 View를 import해야 함.
   
-  <span style="color:#f7df1e">Fragment</span>  
+  <span style="color:#f7df1e; font-weight:bold; font-size:1.1em">Fragment</span>  
   * View와 달리 styling이나 layout을 설정하는 목적이 없이 단지 구분하기 위한 목적으로만 사용
   * 'react'의 Fragment를 import해야 함.
   
 
-  <span style="color:#f7df1e">Fragment 단축 문법</span>
+  <span style="color:#f7df1e; font-weight:bold; font-size:1.1em">Fragment 단축 문법</span>
   * 따로 import하지 않고 사용할 수 있음.
   ```javascript
   export default function App() {
@@ -74,7 +74,23 @@ tags: [React Native, 창업 동아리, 스터디]
 <br/>
 
 
-### 1. 하나의 부모
+### 2. 자바스크립트 변수
+  JSX 내부에서는 자바스크립트 변수를 전달해 사용할 수 있음.
+```javascript
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { Text, View } from 'react-native';
+
+export default function App() {
+  const name = "BeomCheol";
+  return (
+    <View>
+      <Text>My name is {name}</Text>
+      <StatusBar style="auto" />
+    </View>
+  );
+}
+```
 
 <br/>
 
