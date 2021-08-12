@@ -47,17 +47,18 @@ tags: [React Native, 창업 동아리, 스터디]
   ```
   <br/>
 
-  <span style="color:#f7df1e; font-weight:bold; font-size:1.1em">View</span>  
+  <span style="color:#f7df1e; font-weight:bold; font-size:1.1em; font-height:0.5">View</span>  
   * UI를 구성하는 가장 기본적인 요소
   * \<div>와 비슷한 역할
-  * 'react-native'의 View를 import해야 함.
-  
-  <span style="color:#f7df1e; font-weight:bold; font-size:1.1em">Fragment</span>  
-  * View와 달리 styling이나 layout을 설정하는 목적이 없이 단지 구분하기 위한 목적으로만 사용
-  * 'react'의 Fragment를 import해야 함.
-  
+  * 'react-native'의 View를 import해야 함.  
+  <br/>
 
-  <span style="color:#f7df1e; font-weight:bold; font-size:1.1em">Fragment 단축 문법</span>
+  <span style="color:#f7df1e; font-weight:bold; font-size:1.1em; font-height:0.5">Fragment</span>  
+  * View와 달리 styling이나 layout을 설정하는 목적이 없이 단지 구분하기 위한 목적으로만 사용
+  * 'react'의 Fragment를 import해야 함.  
+  <br/>
+
+  <span style="color:#f7df1e; font-weight:bold; font-size:1.1em; font-height:0.5">Fragment 단축 문법</span>
   * 따로 import하지 않고 사용할 수 있음.
   ```javascript
   export default function App() {
