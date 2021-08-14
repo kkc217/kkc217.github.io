@@ -299,17 +299,76 @@ export default MyButton;
 
 
 ## 3.3 props와 state
+  <br/>
+
+### 1. props <span style="font-size:15px">properties</span>
+  * 부모 컴포넌트로부터 전달된 속성값 or `상속`받은 속성값
+  * 자식 컴포넌트에서는 부모로부터 받은 props를 사용할 수 있지만, `변경은 불가능`함.
+  * 변경이 필요하면 props를 설정 및 전달한 부모 컴포넌트에서 변경해야 함.
 <br/>
 
-### 1. props
+<div style="font-size:1.2em; color:cornflowerblue;">props 전달하고 사용하기</div>  
 
-<div style="font-size:1.2em; color:cornflowerblue;">Button 컴포넌트</div>  
-  
+  * MyButton 컴포넌트에서 title 속성을 지정하면 MyButton 컴포넌트의 props로 title이 전달됨.
+
+<span style="color:coral; line-height:0.8">App.js</span>
+
+```javascript
+...
+  <MyButton title="Button" />
+...
+```  
+<br/>
+
+<span style="color:coral; line-height:0.8">MyButton.js</span>
+
+```javascript
+...
+  const MyButton = props => {
+    return (
+      <TouchableOpacity
+      ...
+      >
+        <Text style={{ color: 'white', fontSize: 24 }}>{props.title}</Text>
+      </TouchableOpacity>
+      );
+  };
+...
+```  
+<br/>
 
 
+  * 컴포넌트의 태그 사이에 값을 입력해서 전달하는 방법도 있음.
+  * props에 children으로 전달됨.
 
+<span style="color:coral; line-height:0.8">App.js</span>
+```javascript
+...
+  <MyButton title="Button" />
+  <MyButton title="Button">Children Props</MyButton>
+...
+```  
+<br/>
 
+<span style="color:coral; line-height:0.8">MyButton.js</span>
 
+```javascript
+...
+const MyButton = props => {
+  return (
+    <TouchableOpacity
+      ...
+    >
+      <Text style={{ color: 'white', fontSize: 24 }}>
+        {props.children || props.title}
+      </Text>
+    </TouchableOpacity>
+  );
+};
+...
+```
+
+<img src="/assets/images/210811_ch03/props_children.PNG" style="width:280px; object-fit:contain">
 
 
 
