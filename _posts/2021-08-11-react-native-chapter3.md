@@ -180,7 +180,7 @@ export default function App() {
 
 <div style="font-size:1.2em; color:cornflowerblue;">스타일링</div>
 
-  * HTML의 style과는 달리 문자열로 입력하는 거시 아니라 객체 형태로 입력해야 함.
+  * HTML의 style과는 달리 문자열로 입력하는 것이 아니라 객체 형태로 입력해야 함.
   * 카멜 표기법(camel case)으로 작성해야 함.
   
 ```javascript
@@ -207,7 +207,11 @@ export default function App() {
 
 
 ## 3.2 컴포넌트
+  단순히 UI 역할만 하는 것이 아니라 `부모로부터 받은 속성`이나 `자신의 상태`에 따라 표형이 달라지고 다양한 기능을 수행함.
+  <br/>
 
+### 1. 내장 컴포넌트
+  * 
 
 
 <br/>
