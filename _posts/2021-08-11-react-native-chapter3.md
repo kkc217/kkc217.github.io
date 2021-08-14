@@ -211,7 +211,96 @@ export default function App() {
   <br/>
 
 ### 1. 내장 컴포넌트
-  * 
+
+<div style="font-size:1.2em; color:cornflowerblue;">Button 컴포넌트</div>  
+  
+  * 'react-native'로부터 Button을 import해야 함.
+  * `title 속성` : 버튼 내부에 출력되는 텍스트
+  * `onPress 속성` : 버튼의 눌렸을 때 호출되는 함수를 지정.
+  * `color 속성` : iOS에서는 텍스트 색, 안드로이드에서는 버튼의 바탕색을 나타냄.
+```javascript
+import React from 'react';
+import { Text, View, Button } from 'react-native';
+
+const App = () => {
+  return (
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <Text style={{ fontSize: 30, marginBottom: 10 }}>Button Component</Text>
+      <Button title="Button" onPress={() => alert('Click!')} />
+    </View>
+  );
+};
+
+export default App;
+```
+  <img src="/assets/images/210811_ch03/button_componunt.PNG" style="width:250px; object-fit:contain">
+  <img src="/assets/images/210811_ch03/button_componunt_touched.PNG" style="width:250px; object-fit:contain">
+
+
+<br/>
+
+
+### 2. 커스텀 컴포넌트
+
+<div style="font-size:1.2em; color:cornflowerblue;">MyButton 컴포넌트</div>  
+
+  * Button 컴포넌트는 iOS와 안드로이드에서 다른 모습으로 렌더링된다는 단점을 보완.
+  * TouchableOpacity 컴포넌트와 Text 컴포넌트를 사용하여 만듦.
+  * TouchableOpacity 컴포넌트에는 `onPress` 속성이 없지만, `TouchableWithoutFeedback 컴포넌트를 상속`받아 onPress 속성을 지정하고 사용할 수 있음.
+  
+  <span style="color:coral; line-height:0.8">MyButton.js</span>
+  ```javascript
+  import React from 'react';
+  import { TouchableOpacity, Text } from 'react-native';
+
+  const MyButton = () => {
+    return (
+      <TouchableOpacity
+        style={{
+          backgroundColor: '#3498db',
+          padding: 16,
+          margin: 10,
+          borderRadius: 8,
+        }}
+        onPress={() => alert('Click~')}
+      >
+        <Text style={{ color: 'white', fontSize: 24 }}>My Button</Text>
+      </TouchableOpacity>
+    );
+  };
+
+  export default MyButton;
+  ``` 
+  <img src="/assets/images/210811_ch03/my_button_componunt.PNG" style="width:250px; object-fit:contain">
+  <img src="/assets/images/210811_ch03/my_button_componunt_touched.PNG" style="width:250px; object-fit:contain">
+  <br/>
+
+
+### <span style="color:#cd853f">Plus.</span> eject 명령어 <span style="font-size:11px; opacity:0.6">내보내기</span>
+  Expo는 개발자의 생산성을 높여준다는 장점이 있지만, 이로 인해 일부 기능을 사용하는데 제한이 있어 `CLI 프로젝트로 변경`해야 하는 상황이 발생하는데 이 때 사용하는 명령어가 eject이다.  
+  <span style="font-size:0.9em; opacity:0.7">! Expo는 JavaScript로 앱을 작성하고, eject는 이를 React Native 코드로 바꿔준다.</span>
+
+  * <span style="color:coral; font-weight:bold">주의</span> 변경된 CLI 프로젝트는 다시 Expo 프로젝트로 돌아올 수 없다.
+  * 이와 관련된 내용은 뒷부분이나 따로 빼서 다루도록 하겠다.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <br/>
