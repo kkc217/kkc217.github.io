@@ -314,26 +314,26 @@ export default MyButton;
 <span style="color:coral; line-height:0.8">App.js</span>
 
 ```javascript
-...
+//...
   <MyButton title="Button" />
-...
+//...
 ```  
 <br/>
 
 <span style="color:coral; line-height:0.8">MyButton.js</span>
 
 ```javascript
-...
+//...
   const MyButton = props => {
     return (
       <TouchableOpacity
-      ...
+      //...
       >
         <Text style={{ color: 'white', fontSize: 24 }}>{props.title}</Text>
       </TouchableOpacity>
       );
   };
-...
+//...
 ```  
 <br/>
 
@@ -342,22 +342,23 @@ export default MyButton;
   * props에 children으로 전달됨.
 
 <span style="color:coral; line-height:0.8">App.js</span>
+
 ```javascript
-...
+//...
   <MyButton title="Button" />
   <MyButton title="Button">Children Props</MyButton>
-...
+//...
 ```  
 <br/>
 
 <span style="color:coral; line-height:0.8">MyButton.js</span>
 
 ```javascript
-...
+//...
 const MyButton = props => {
   return (
     <TouchableOpacity
-      ...
+      //...
     >
       <Text style={{ color: 'white', fontSize: 24 }}>
         {props.children || props.title}
@@ -365,11 +366,20 @@ const MyButton = props => {
     </TouchableOpacity>
   );
 };
-...
+//...
 ```
 
 <img src="/assets/images/210811_ch03/props_children.PNG" style="width:280px; object-fit:contain">
 
+
+<br/>
+
+
+<div style="font-size:1.2em; color:cornflowerblue;">defaultProps</div>  
+
+  * props에 아무것도 넣지 않으면 내용 없이 출력되거나 예상과 다른 결과가 나올 수 있음.
+  
+```javascript
 
 
 
