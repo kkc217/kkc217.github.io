@@ -242,8 +242,7 @@ const App = () => {
 export default App;
 ```
 
-<img src="/assets/images/210811_ch03/button_component.PNG" style="width:250px; object-fit:contain">
-<img src="/assets/images/210811_ch03/button_component_touched.PNG" style="width:250px; object-fit:contain">
+<img src="/assets/images/210811_ch03/button_component.PNG" style="width:600px; object-fit:contain">
 
 
 <br/>
@@ -282,8 +281,7 @@ const MyButton = () => {
 export default MyButton;
 ``` 
 
-<img src="/assets/images/210811_ch03/my_button_component.PNG" style="width:250px; object-fit:contain">
-<img src="/assets/images/210811_ch03/my_button_component_touched.PNG" style="width:250px; object-fit:contain">
+<img src="/assets/images/210811_ch03/my_button_component.PNG" style="width:600px; object-fit:contain">
 <br/>
 
 
