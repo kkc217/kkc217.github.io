@@ -218,6 +218,7 @@ export default function App() {
   * `title 속성` : 버튼 내부에 출력되는 텍스트
   * `onPress 속성` : 버튼의 눌렸을 때 호출되는 함수를 지정.
   * `color 속성` : iOS에서는 텍스트 색, 안드로이드에서는 버튼의 바탕색을 나타냄.
+
 ```javascript
 import React from 'react';
 import { Text, View, Button } from 'react-native';
@@ -240,8 +241,9 @@ const App = () => {
 
 export default App;
 ```
-  <img src="/assets/images/210811_ch03/button_componunt.PNG" style="width:250px; object-fit:contain">
-  <img src="/assets/images/210811_ch03/button_componunt_touched.PNG" style="width:250px; object-fit:contain">
+
+<img src="/assets/images/210811_ch03/button_componunt.PNG" style="width:250px; object-fit:contain">
+<img src="/assets/images/210811_ch03/button_componunt_touched.PNG" style="width:250px; object-fit:contain">
 
 
 <br/>
@@ -255,32 +257,34 @@ export default App;
   * TouchableOpacity 컴포넌트와 Text 컴포넌트를 사용하여 만듦.
   * TouchableOpacity 컴포넌트에는 `onPress` 속성이 없지만, `TouchableWithoutFeedback 컴포넌트를 상속`받아 onPress 속성을 지정하고 사용할 수 있음.
   
-  <span style="color:coral; line-height:0.8">MyButton.js</span>
-  ```javascript
-  import React from 'react';
-  import { TouchableOpacity, Text } from 'react-native';
+<span style="color:coral; line-height:0.8">MyButton.js</span>
 
-  const MyButton = () => {
-    return (
-      <TouchableOpacity
-        style={{
-          backgroundColor: '#3498db',
-          padding: 16,
-          margin: 10,
-          borderRadius: 8,
-        }}
-        onPress={() => alert('Click~')}
-      >
-        <Text style={{ color: 'white', fontSize: 24 }}>My Button</Text>
-      </TouchableOpacity>
-    );
-  };
+```javascript
+import React from 'react';
+import { TouchableOpacity, Text } from 'react-native';
 
-  export default MyButton;
-  ``` 
-  <img src="/assets/images/210811_ch03/my_button_componunt.PNG" style="width:250px; object-fit:contain">
-  <img src="/assets/images/210811_ch03/my_button_componunt_touched.PNG" style="width:250px; object-fit:contain">
-  <br/>
+const MyButton = () => {
+  return (
+    <TouchableOpacity
+      style={{
+        backgroundColor: '#3498db',
+        padding: 16,
+        margin: 10,
+        borderRadius: 8,
+      }}
+      onPress={() => alert('Click~')}
+    >
+      <Text style={{ color: 'white', fontSize: 24 }}>My Button</Text>
+    </TouchableOpacity>
+  );
+};
+
+export default MyButton;
+``` 
+
+<img src="/assets/images/210811_ch03/my_button_componunt.PNG" style="width:250px; object-fit:contain">
+<img src="/assets/images/210811_ch03/my_button_componunt_touched.PNG" style="width:250px; object-fit:contain">
+<br/>
 
 
 ### <span style="color:#cd853f">Plus.</span> eject 명령어 <span style="font-size:11px; opacity:0.6">내보내기</span>
@@ -290,6 +294,19 @@ export default App;
   * <span style="color:coral; font-weight:bold">주의</span> 변경된 CLI 프로젝트는 다시 Expo 프로젝트로 돌아올 수 없다.
   * 이와 관련된 내용은 뒷부분이나 따로 빼서 다루도록 하겠다.
 
+
+<br/>
+
+---
+
+
+## 3.3 props와 state
+<br/>
+
+### 1. props
+
+<div style="font-size:1.2em; color:cornflowerblue;">Button 컴포넌트</div>  
+  
 
 
 
