@@ -299,7 +299,6 @@ export default MyButton;
 
 
 ## 3.3 props와 state
-  <br/>
 
 ### 1. props <span style="font-size:15px">properties</span>
   * 부모 컴포넌트로부터 전달된 속성값 or `상속`받은 속성값
@@ -379,7 +378,30 @@ const MyButton = props => {
 
   * props에 아무것도 넣지 않으면 내용 없이 출력되거나 예상과 다른 결과가 나올 수 있음.
   
+<span style="color:coral; line-height:0.8">MyButton.js</span>
+
 ```javascript
+//...
+const MyButton = props => {/*...*/};
+
+MyButton.defaultProps = {
+  title: 'Button',
+};
+
+export default MyButton;
+```
+
+
+<br/>
+
+
+<div style="font-size:1.2em; color:cornflowerblue;">propTypes</div>  
+
+
+
+
+
+
 
 
 
