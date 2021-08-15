@@ -389,7 +389,7 @@ MyButton.defaultProps = {
 };
 
 export default MyButton;
-```
+```  
 
 
 <br/>
@@ -397,8 +397,28 @@ export default MyButton;
 
 <div style="font-size:1.2em; color:cornflowerblue;">propTypes</div>  
 
+  * 잘못된 props가 전달되었으면 경고 메시지를 출력함.
+  * 'Required'여도 defaultProps로 기본값이 설정되어 있다면 값이 없어도 됨.
+  * 'prop-types'에서 PropTypes를 import해야 함.
 
+<span style="color:coral; line-height:0.8">prop-types 라이브러리 설치하기</span>
 
+```
+npm install prop-types
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">MyButton.js</span>
+
+```javascript
+//...
+MyButton.propTypes = {
+  title: PropTypes.string.isRequired,
+  onPress: PropTypes.func.isRequired,
+};
+//...
+```
 
 
 
