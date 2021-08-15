@@ -285,12 +285,8 @@ export default MyButton;
 <br/>
 
 
-### <span style="color:#cd853f">Plus.</span> eject 명령어 <span style="font-size:11px; opacity:0.6">내보내기</span>
-  Expo는 개발자의 생산성을 높여준다는 장점이 있지만, 이로 인해 일부 기능을 사용하는데 제한이 있어 `CLI 프로젝트로 변경`해야 하는 상황이 발생하는데 이 때 사용하는 명령어가 eject이다.  
-  <span style="font-size:0.9em; opacity:0.7">! Expo는 JavaScript로 앱을 작성하고, eject는 이를 React Native 코드로 바꿔준다.</span>
-
-  * <span style="color:coral; font-weight:bold">주의</span> 변경된 CLI 프로젝트는 다시 Expo 프로젝트로 돌아올 수 없다.
-  * 이와 관련된 내용은 뒷부분이나 따로 빼서 다루도록 하겠다.
+### <span style="color:#cd853f">Plus.</span> <span style="color:#f7df1e">import React from 'react';</span>
+  JSX는 React.createElement를 호출하는 코드로 컴파일되므로 컴포넌트를 작성할 때 반드시 imoprt 해야 함.
 
 
 <br/>
@@ -406,7 +402,6 @@ export default MyButton;
 ```
 npm install prop-types
 ```
-
 <br/>
 
 <span style="color:coral; line-height:0.8">MyButton.js</span>
@@ -420,17 +415,233 @@ MyButton.propTypes = {
 //...
 ```
 
+---
 
 
-
-
-
-
-
+### 2. state
+  * props와 달리 컴포넌트 `내부에서 생성`되고 `값을 변경`할 수 있어, 컴포넌트 상태를 관리함.
+  * `상태`: 컴포넌트에서 변화할 수 있는 값, 상태가 변하면 컴포넌트는 리렌더링 됨.
+  * 과거에는 상태를 관리해야 하는 컴포넌트는 반드시 `클래스형 컴포넌트`를 사용해야 했음.<br/>But, 리액트 네이티브 0.59버전부터는 Hooks를 사용해 함수형 컴포넌트에서도 상태를 관리할 수 있게 됨.
 
 
 <br/>
 
+
+<div style="font-size:1.2em; color:cornflowerblue;">useState</div>  
+
+  * Hooks 중 useState는 함수형 컴포넌트에서 상태를 관리할 수 있도록 해줌.
+  * 상태를 관리하는 `변수`와 그 변수를 변경할 수 있는 `세터 함수`를 `배열`로 반환함.
+  * 상태 변수는 직접 변경하는 것이 아니라 useState 함수에서 반환한 세터 함수를 이용해야 함.
+  * useState 함수를 호출할 때 상태의 `초깃값`을 전달 할 수 있음.<br/><span style="color:coral; font-size:0.9em">! 초깃값을 전달하지 않으면 undefined로 설정되어 에러가 발생할 수 있음.</span>
+  * 'react'의 useState를 import 해야 함.
+  
+<span style="color:coral; line-height:0.8">Conter.js</span>
+
+```javascript
+import React, { useState } from 'react';
+import { View, Text } from 'react-native';
+import MyButton from './MyButton';
+
+const Counter = () => {
+  const [count, setCount] = useState(0);
+  return (
+    <View style={{ alignItems: 'center' }}>
+      <Text style={{ fontSize: 30, margin: 10 }}>{count}</Text>
+      <MyButton title="+1" onPress={() => setCount(count + 1)} />
+      <MyButton title="-1" onPress={() => setCount(count - 1)} />
+    </View>
+  );
+};
+
+export default Counter;
+```
+
+<span style="color:#f7df1e; font-weight:bold; font-size:1.1em; font-height:0.5">const [count, setCount] = useState(0);</span>
+
+  * count라는 상태 변수의 초깃값을 0으로 설정
+
+<span style="color:#f7df1e; font-weight:bold; font-size:1.1em; font-height:0.5">onPress={() => setCount(count + 1)}</span>
+
+  * 눌렀을 때 setCount가 호출되어 count를 'count + 1' 리렌더링함.
+
+<br/>
+
+<span style="color:coral; line-height:0.8">App.js</span>
+
+```javascript
+import React from 'react';
+import { View } from 'react-native';
+import Counter from './components/Counter';
+
+const App = () => {
+  return (
+    <View
+      //...
+    >
+      <Counter />
+    </View>
+  );
+};
+//...
+```
+
+
+<br/>
+
+
+<div style="font-size:1.2em; color:cornflowerblue;">여러 개의 useState</div>  
+
+  * 관리해야 하는 상태의 수만큼 useState를 사용하면 됨. (변수 생성하는 것처럼)
+
+<img src="/assets/images/210811_ch03/useState_button.PNG" style="width:280px; object-fit:contain">
+
+
+<br/>
+
+---
+
+
+## 3.4 이벤트
+  사용자의 행동에 따라 상호 작용하는 이벤트를 다양하게 제공함.
+  <br/>
+
+### 1. press 이벤트
+  * 웹 프로그래밍에서의 onClick 이벤트와 비슷함.<br/><br/>
+
+<span style="color:coral; line-height:0.8">TouchableOpacity 컴포넌트에서 설정 가능한 Press 이벤트</span>
+  * `onPressIn`: 터치가 시작될 때 항상 호출
+  * `onPressOut`: 터치가 해제될 때 항상 호출
+  * `onPress`: 터치가 해제될 때 onPewaaOut 이후 호출
+  * `onLongPress`: 터치가 일정 시간 이상 지속되면 호출
+
+<br/>
+
+<span style="color:coral; line-height:0.8">EventInput.js</span>
+
+```javascript
+import React from 'react';
+import { TouchableOpacity, Text } from 'react-native';
+
+const EventButton = () => {
+  const _onPressIn = () => console.log('Press In!\n');
+  const _onPressOut = () => console.log('Press out!\n');
+  const _onLongPress = () => console.log('Long Press!\n');
+
+  return (
+    <TouchableOpacity
+      onPressIn={_onPressIn}
+      onPressOut={_onPressOut}
+      onLongPress={_onLongPress}
+      delayLongPress={3000}
+    >
+      <Text>Press</Text>
+    </TouchableOpacity>
+  );
+};
+
+export default EventButton;
+```
+
+<span style="color:#f7df1e; font-weight:bold; font-size:1.1em; font-height:0.5">delayLongPress={3000}</span>
+
+  * 3초 동안 클릭하고 있어야 onLongPress가 호출됨.
+
+
+<br/>
+
+
+### 2. change 이벤트
+  * 값을 입력하는 `TextInput 컴포넌트`에서 많이 사용됨.
+  
+<br/>
+
+<span style="color:coral; line-height:0.8">EventInput.js</span>
+
+```javascript
+import React, { useState } from 'react';
+import { View, Text, TextInput } from 'react-native';
+
+const EventInput = () => {
+  const [text, setText] = useState('');
+  const _onChange = event => setText(event.nativeEvent.text);
+
+  return (
+    <View>
+      <Text>text: {text}</Text>
+      <TextInput
+        placeholder="Enter a text..."
+        onChange={_onChange}
+      />
+    </View>
+  );
+};
+
+export default EventInput;
+```
+
+* <span style="color:#f7df1e; font-weight:bold">onChangeText</span>를 사용하면 텍스트가 변경되었을 때 변경된 텍스트의 문자열만 인수로 전달해 호출할 수 있음.
+
+<span style="color:coral; line-height:0.8">EventInput.js</span>
+
+```javascript
+//...
+const EventInput = () => {
+  //...
+  const _onChangeText = text => setText(text);
+  return (
+    <View>
+      //...
+      <TextInput
+        placeholder="Enter a text..."
+        onChangeText={_onChangeText}
+      />
+    </View>
+  );
+};
+//...
+```
+
+
+<br/>
+
+
+### 3. Pressable 컴포넌트
+  * 리액트 네이티브 0.63 버전부터 `TouchableOpacity 컴포넌트`를 대체하는 Pressable 컴포넌트가 추가됨.
+  * 'react-native'의 Pressable을 import 해야 함.
+  * HitRect와 PressRect 기능이 추가됨.
+  * `HitRect`: 버튼 모양보다 약간 떨어진 부분까지 이벤트가 발생할 수 있도록 하는 기능
+  * `PressRect`: 버튼을 누른 상태에서 손가랑을 이동시킬 때 얼마나 멀어져야 버튼을 누른 상태에서 벗어났다고 판단할 지를 설정
+  
+```javascript
+import React from 'react';
+import { View, Text, Pressable } from 'react-native';
+
+const Button = (props) => {
+  return (
+    <Pressable
+      onPressIn={() => console.log('Press In')}
+      pressRetentionOffset={{bottom: 50, left: 50, right: 50, top: 50}}
+      hitSlop={50}
+    >
+      <Text>{props.title}</Text>
+    </Pressable>
+  );
+};
+
+const App = () => {
+  return (
+    <View>
+      <Button title="Pressable" />
+    </View>
+  );
+};
+
+export default App;
+```
+<span style="color:coral; font-size:0.9em">! PressRect의 범위는 HitRect의 범위 끝에서부터 시작되므로 hitSlop의 값에 따라 PressRect의 범위가 달라짐.</span>
+
+
+<br/>
 
 
 ---
