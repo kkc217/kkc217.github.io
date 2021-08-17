@@ -405,7 +405,7 @@ const Button = props => {
 <br/>
 
 
-### 4.attrs 사용하기
+### 4. attrs 사용하기
   * 스타일드 컴포넌트에서 사용할 수 있는 기능 중 하나
   * 다른 파일로부터 값을 받아 스타일드 컴포넌트에서 속성을 설정할 때 사용할 수 있음.
 
@@ -470,39 +470,97 @@ export default App;
 <img src="/assets/images/210816_ch04/styledComponents_attrs.PNG" style="width:280px; object-fit:contain">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <br/>
 
 
----
+### 5. ThemeProvider
+
+  * Context API를 활용해 애플리케이션 전체에서 스타일드 컴포넌트를 이용할 때 `미리 정의`한 값들을 사용할 수 있도록 props로 전달함.
+  * 'styled-components/native'의 ThemeProvider를 import 해야 함.
+
+<span style="color:coral; line-height:0.8">theme.js</span>
+
+```javascript
+export const lightTheme = {
+    background: '#ffffff',
+    text: '#ffffff',
+    purple: '#9b59b6',
+    blue: '#3498db',
+};
+
+export const darkTheme = {
+    background: '#34495e',
+    text: '#34495e',
+    purple: '#9b59b6',
+    blue: '#3498db',
+};
+```
+
+<span style="color:coral; line-height:0.8">Button.js</span>
+
+```javascript
+//...
+const ButtonContainer = styled.TouchableOpacity`
+    background-color: ${props =>
+        props.title === 'Hanbit' ? props.theme.blue : props.theme.purple};
+    //...
+`;
+//...
+const Title = styled.Text`
+    font-size: 20px;
+    font-weight: 600;
+    color: ${props => props.theme.text};
+`;
+//...
+```
+
+<span style="color:coral; line-height:0.8">App.js</span>
+
+```javascript
+import React, { useState } from 'react';
+import { Switch } from 'react-native';
+import styled, { ThemeProvider } from 'styled-components/native';
+import Button from './components/Button';
+import Input from './components/Input';
+import { lightTheme, darkTheme } from './theme';
+
+const Container = styled.View`
+    flex: 1;
+    background-color: ${props => props.theme.background};
+    align-items: center;
+    justify-content: center;
+`;
+
+const App = () => {
+    const [isDark, setIsDark] = useState(false);
+    const _toggleSwitch = () => setIsDark(!isDark);
+
+    return (
+        <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+            <Container>
+                <Switch value={isDark} onValueChange={_toggleSwitch} />
+                <Button title="Hanbit" />
+                <Button title="React Native" />
+                <Input borderColor="#3498db" />
+                <Input borderColor="#9b59b6" />
+            </Container>
+        </ThemeProvider>
+    );
+};
+
+export default App;
+```
+
+<span style="color:#f7df1e; font-height:0.5"><ThemeProvider theme={isDark ? darkTheme : lightTheme}></span>  
+ThemeProvider를 활용해 theme를 지정하면, 미리 정의해둔 색을 `하위 컴포넌트`에서 사용할 수 있음.
+
+<span style="color:#f7df1e; font-height:0.5">background-color: ${props => props.theme.background};</span>  
+뒤에 App return하는 부분에서 ThemeProvider에 의해 정의된 theme가 props.theme에 해당됨.
+<br/>
+
+<img src="/assets/images/210816_ch04/styledComponents_ThemeProvider.PNG" style="width:600px; object-fit:contain">
 
 
-### 참고  
-* View vs. Fragment  
-https://www.reddit.com/r/reactnative/comments/cjoz9g/fragment_vs_view_tag/
 
 <div style="font-size:13px; text-align:right">
 <br/><br/>
