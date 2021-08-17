@@ -201,6 +201,273 @@ export default App;
   * 쌓이는 순서는 flexDirection에서 설정한대로 하고, 컴포넌트 정렬 방법을 설정함.
   * flexDirection에서 결정한 방향과 `동일한` 방향으로 정렬함.
 
+<span style="color:coral; line-height:0.8">justifyContent에 설정할 수 있는 값</span>
+  * `flex-start`: 시작점에서부터 정렬 (기본값)
+  * `flex-end`: 끝에서부터 정렬
+  * `center`: 중앙 정렬
+  * `space-between`: 컴포넌트 사이의 공간을 동일하게 만들어서 정렬
+  * `space-around`: 컴포넌트 각각의 주변 공간을 동일하게 만들어서 정렬
+  * `space-evenly`: 컴포넌트 사이와 양 끝에 동일한 공간을 만들어서 정렬
+
+<img src="/assets/images/210816_ch04/justifyContent_and_alignItems.PNG" style="width:600px; object-fit:contain"><br/>
+<img src="/assets/images/210816_ch04/justifycontent_picture.PNG" style="width:600px; object-fit:contain"><br/>
+
+
+<br/>
+
+
+<div style="font-size:1.2em; color:cornflowerblue;">alignItems</div>
+  * flexDirection에서 정한 방향과 `수직`
+
+<span style="color:coral; line-height:0.8">alignItems에 설정할 수 있는 값</span>
+  * `flex-start`: 시작점에서부터 정렬 (기본값)
+  * `flex-end`: 끝에서부터 정렬
+  * `center`: 중앙 정렬
+  * `stretch`: alignItems의 방향으로 컴포넌트 확장
+  * `baseline`: 컴포넌트 내부의 텍스트 베이스라인을 기준으로 정렬
+
+<img src="/assets/images/210816_ch04/alignItems_picture.PNG" style="width:600px; object-fit:contain"><br/>
+
+
+<br/>
+
+
+<div style="font-size:1.2em; color:cornflowerblue;">그림자</div>
+
+  * `shadowColor`: 그림자 색 설정
+  * `shadowOffset`: width와 height값을 지정해 그림자 거리 설정
+  * `shadowOpacity`: 그림자의 불투명도 설정
+  * `shadowRadius`: 그림자의 흐림 반경 설정  
+  * 이 속성들은 `iOS에만` 적용되는 속성으로, 안드로이드에서는 `elevation`이라는 속성을 사용해야 함.
+
+
+<br/>
+
+---
+
+
+## 4.3 스타일드 컴포넌트
+  * 자바스크립트 파일 안에 스타일을 작성하는 `CSS-in-JS` 라이브러리
+  * CSS에서 사용하는 속성들을 그대로 사용할 수 있음.
+  
+### 0. 스타일드 컴포넌트 설치
+```
+npm install styled-components
+```
+
+
+<br/>
+
+
+### 1. 스타일드 컴포넌트 사용법
+
+  * `"styled.[컴포넌트 이름]"` 형태 뒤에 벡틱(`)을 사용해 만든 문자열을 붙이고, 그 안에 스타일을 지정하면 됨.
+  * styled 뒤에 작성하는 컴포넌트의 이름은 `반드시 존재`하는 컴포넌트를 지정해야 함.
+  * `css`를 이용해 재사용 가능한 코드를 관리할 수 있음.
+  * 'styled-components/native'의 styled를 import 해야 함.
+
+```javascript
+import styled. { css } from 'styled-components/native';
+
+const whiteText = css`
+    color: #fff;
+    font-size: 14px;
+`;
+const MyBoldTextComponent = styled.Text`
+    ${whiteText}
+    font-weight: 600;
+`;
+const MyLightTextComponent = styled.Text`
+    ${whiteText}
+    font-weight: 200;
+`;
+```
+
+<br/>
+
+  * 완성된 컴포넌트를 `상속`받아 이용할 수도 있음.
+  * 기존의 형태와 달리 `"styled(컴포넌트 이름)"` 형태로 소괄호로 감싸야 함.
+
+```javascript
+import styled from 'styled-components/native';
+
+const StyledText - styled.Text`
+    color: #000;
+    font-size: 20px;
+`;
+
+const ErrorText = styled(StyledText)`
+    font-weight: 600;
+    color: red;
+`;
+```
+
+
+<br/>
+
+
+### 2. 스타일 적용하기
+스타일드 컴포넌트를 사용하면 역할에 맞게 스타일에 이름을 지정할 수 있다는 장점이 있음.
+
+<span style="color:coral; line-height:0.8">Button.js</span>
+
+```javascript
+import React from 'react';
+import styled from 'styled-components/native';
+
+const ButtonContainer = styled.TouchableOpacity`
+    background-color: #9b59b6;
+    border-radius: 15px;
+    padding: 15px 40px;
+    margin: 10px 0px;
+    justify-content: center;
+`;
+const Title = styled.Text`
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+`;
+
+const Button = props => { 
+    return (
+        <ButtonContainer>
+            <Title>{props.title}</Title>
+        </ButtonContainer>
+    );
+};
+
+export default Button;
+``` 
+
+<br/>
+
+<span style="color:coral; line-height:0.8">App.js</span>
+
+```javascript
+import React from 'react';
+import styled from 'styled-components/native';
+import Button from './components/Button';
+
+const Container = styled.View`
+    flex: 1;
+    background-color: #ffffff;
+    align-items: center;
+    justify-content: center;
+`;
+
+const App = () => {
+    return (
+        <Container>
+            <Button title="Hanbit" />
+            <Button title="React Native" />
+        </Container>
+    );
+};
+
+export default App;
+```
+
+
+<br/>
+
+
+### 3. props 사용하기
+같은 파일 내에서, props로 값을 전달하면 백틱 안에서 props에 접근할 수 있음.
+
+<span style="color:coral; line-height:0.8">Button.js</span>
+
+```javascript
+//...
+const ButtonContainer = styled.TouchableOpacity`
+    background-color: ${props =>
+        props.title === 'Hanbit' ? '#3498db' : '#9b59b6'};
+    border-radius: 15px;
+    padding: 15px 40px;
+    margin: 10px 0px;
+    justify-content: center;
+`;
+//...
+
+const Button = props => {
+    return (
+        <ButtonContainer title={props.title}>
+            <Title>{props.title}</Title>
+        </ButtonContainer>
+    );
+};
+/...
+```
+
+<span style="color:#f7df1e; font-height:0.5">\<ButtonContainer title={props.title}></span>  
+`{props.title}`은 Button 컴포넌트를 사용할 때 전달받는 props의 값이고, <br/>`ButtonContainer title=`의 title은 ButtonContainer에 넘겨주는 props의 값이다.
+
+
+<br/>
+
+
+### 4.attrs 사용하기
+  * 스타일드 컴포넌트에서 사용할 수 있는 기능 중 하나
+  * 다른 파일로부터 값을 받아 스타일드 컴포넌트에서 속성을 설정할 때 사용할 수 있음.
+
+<span style="color:coral; line-height:0.8">Input.js</span>
+
+```javascript
+import React from 'react';
+import styled from 'styled-components/native';
+
+const StyledInput = styled.TextInput.attrs(props => ({
+    placeholder: 'Enter a text...',
+    placeholderTextColor: props.borderColor,
+}))`
+    width: 200px;
+    height: 60px;
+    margin: 5px;
+    padding 10px;
+    border-radius: 10px;
+    border: 2px;
+    border-color: ${props => props.borderColor};
+    font-size: 24px;
+`;
+
+const Input = props => {
+    return <StyledInput borderColor={props.borderColor} />;
+};
+
+export default Input;
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">App.js</span>
+
+```javascript
+import React from 'react';
+import styled from 'styled-components/native';
+import Button from './components/Button';
+import Input from './components/Input';
+
+const Container = styled.View`
+    flex: 1;
+    background-color: #ffffff;
+    align-items: center;
+    justify-content: center;
+`;
+
+const App = () => {
+    return (
+        <Container>
+            <Button title="Hanbit" />
+            <Button title="React Native" />
+            <Input borderColor="#3498db" />
+            <Input borderColor="#9b59b6" />
+        </Container>
+    );
+};
+
+export default App;
+```
+
+<img src="/assets/images/210816_ch04/styledComponents_attrs.PNG" style="width:280px; object-fit:contain">
 
 
 
@@ -227,14 +494,18 @@ export default App;
 
 
 
+<br/>
 
 
+---
 
 
+### 참고  
+* View vs. Fragment  
+https://www.reddit.com/r/reactnative/comments/cjoz9g/fragment_vs_view_tag/
 
+<div style="font-size:13px; text-align:right">
+<br/><br/>
+END.</div>
 
-
-
-
-
-
+---
