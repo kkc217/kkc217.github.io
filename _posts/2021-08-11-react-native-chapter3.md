@@ -648,7 +648,7 @@ export default App;
 
 
 ## 참고  
-* View vs. Fragment  
+* <span style="opacity:0.5">View vs. Fragment</span>  
 https://www.reddit.com/r/reactnative/comments/cjoz9g/fragment_vs_view_tag/
 
 <div style="font-size:13px; text-align:right">
