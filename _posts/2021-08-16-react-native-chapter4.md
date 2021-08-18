@@ -6,7 +6,7 @@ categories: ReactNative
 tags: [React Native, 창업 동아리, 스터디]
 ---
 
-## 0 실습 준비하기
+## 4.0 실습 준비하기
   ```
   expo init react-native-style
   ```
