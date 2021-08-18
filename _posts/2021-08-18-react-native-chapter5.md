@@ -789,17 +789,19 @@ const Task = ({ item, deleteTask, toggleTask, updateTask }) => {
 <img src="/assets/images/210818_ch05/cancel_function.PNG" style="width:600px; object-fit:contain">
 
 
+<br/>
+
+---
 
 
+## 5.6 부가 기능
+데이터를 저장하고 불러오는 기능과 로딩 화면을 변경하는 방법을 사용해 앱의 완성도를 높임.
 
+<span style="color:coral; font-size:0.9em">! async-storage를 사용하는데 오류가 발생함.</span>
 
+<span style="color:coral; font-size:0.9em">! expo에서 async-storage를 사용할 수 없다고 함. But, 다른 방법을 찾지 못함.</span>
 
-
-
-
-
-
-
+<img src="/assets/images/210818_ch05/asyncStorage_error.PNG" style="width:280px; object-fit:contain">
 
 
 <br/>
@@ -809,8 +811,11 @@ const Task = ({ item, deleteTask, toggleTask, updateTask }) => {
 
 
 ## 참고  
-* <span style="opacity:0.6">Object.assign()</span>  
+* <span style="opacity:0.5">Object.assign()</span>  
 https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+
+* <span style="opacity:0.5">async-storage 오류</span>  
+https://stackoverflow.com/questions/56029007/nativemodule-asyncstorage-is-null-with-rnc-asyncstorage
 
 <div style="font-size:13px; text-align:right">
 <br/><br/>
