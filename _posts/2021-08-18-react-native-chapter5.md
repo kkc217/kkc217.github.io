@@ -323,6 +323,8 @@ export default Task;
 
 ## 5.5 기능 구현하기
 
+### 1. 추가 기능
+
 <span style="color:coral; line-height:0.8">App.js</span>
 
 ```javascript
@@ -344,13 +346,103 @@ export default function app() {
 <span style="color:#f7df1e; font-height:0.5">setTasks({ ...tasks, ...newTaskObject });</span>  
 기존의 목록 tasks는 유지한 상태에서 새로운 항목이 추가되도록 구성
 
-<img src="/assets/images/210818_ch05/add_function.PNG" style="width:280px; object-fit:contain">
+<img src="/assets/images/210818_ch05/add_function.PNG" style="width:600px; object-fit:contain">
 
 
+<br/>
 
 
+### 2. 삭제 기능
 
+<span style="color:coral; line-height:0.8">App.js</span>
 
+```javascript
+//...
+export default function App() {
+    //...
+    const _addTask = () => {//...
+        };
+
+    const _deleteTask = id => {
+        const currentTasks = Object.assign({}, tasks);
+        delete currentTasks[id];
+        setTasks(currentTasks);
+    };
+    //...
+    return (
+        <ThemeProvider theme={theme}>
+            <Container>
+                //...
+                <List width={width}>
+                    {Object.values(tasks)
+                        .reverse()
+                        .map(item => (
+                            <Task key={item.id} item={item} deleteTask={_deleteTask} />
+                        ))}
+                </List>
+            </Container>
+        </ThemeProvider>
+    );
+}
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">Task.js</span>
+
+```javascript
+//...
+const Task = ({ item, deleteTask }) => {
+    return (
+        <Container>
+            <IconButton type={images.uncompleted} />
+            <Contents>{item.text}</Contents>
+            <IconButton type={images.update} />
+            <IconButton type={images.delete} id={item.id} onPressOut={deleteTask} />
+        </Container>
+    );
+};
+
+Task.propTypes = {
+    item: PropTypes.object.isRequired,
+    deleteTask: PropTypes.func.isRequired,
+};
+
+export default Task;
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">IconButton.js</span>
+
+```javascript
+//...
+const IconButton = ({ type, onPressOut, id }) => {
+    const _onPressOut = () => {
+        onPressOut(id);
+    };
+
+    return (
+        <TouchableOpacity onPressOut={_onPressOut}>
+            <Icon source={type} />
+        </TouchableOpacity>
+    );
+};
+
+IconButton.defaultProps = {
+    onPressOut: () => {},
+};
+
+IconButton.propTypes = {
+    type: PropTypes.oneOf(Object.values(images)).isRequired,
+    onPressOut: PropTypes.func,
+    id: PropTypes.string,
+};
+
+export default IconButton;
+```
+
+<img src="/assets/images/210818_ch05/delete_function.PNG" style="width:280px; object-fit:contain">
 
 
 
