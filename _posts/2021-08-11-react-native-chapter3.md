@@ -647,7 +647,7 @@ export default App;
 ---
 
 
-### 참고  
+## 참고  
 * View vs. Fragment  
 https://www.reddit.com/r/reactnative/comments/cjoz9g/fragment_vs_view_tag/
 
