@@ -219,6 +219,140 @@ Google Material Design에서 아이콘으로 사용할 이미지를 다운함.
 
 ### 2. IconButton 컴포넌트 & Task 컴포넌트
 
+<span style="color:coral; line-height:0.8">images.js</span>
+
+```javascript
+import CheckBoxOutline from '../assets/icons/check_box_outline.png';
+import CheckBox from '../assets/icons/check_box.png';
+import DeleteForever from '../assets/icons/delete_forever.png';
+import Edit from '../assets/icons/edit.png';
+
+export const images = {
+    uncompleted: CheckBoxOutline,
+    completed: CheckBox,
+    delete: DeleteForever,
+    update: Edit,
+};
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">IconButton.js</span>
+
+```javascript
+import React from 'react';
+import { TouchableOpacity } from 'react-native';
+import styled from 'styled-components/native';
+import PropTypes from 'prop-types';
+import { images } from '../images';
+
+const Icon = styled.Image`
+    tint-color: ${({ theme }) => theme.text};
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+`;
+
+const IconButton = ({ type, onPressOut }) => {
+    return (
+        <TouchableOpacity onPressOut={onPressOut}>
+            <Icon source={type} />
+        </TouchableOpacity>
+    );
+};
+
+IconButton.propTypes = {
+    type: PropTypes.oneOf(Object.values(images)).isRequired,
+    onPressOut: PropTypes.func,
+};
+
+export default IconButton;
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">Task.js</span>
+
+```javascript
+import React from 'react';
+import styled from 'styled-components/native';
+import PropTypes from 'prop-types';
+import IconButton from './IconButton';
+import { images } from '../images';
+
+const Container = styled.View`
+    flex-direction: row;
+    align-items: center;
+    background-color: ${({ theme }) => theme.itemBackground};
+    border-radius: 10px;
+    padding: 5px;
+    margin: 3px 0px;
+`;
+
+const Contents = styled.Text`
+    flex: 1;
+    font-size: 24px;
+    color: ${({ theme}) => theme.text};
+`;
+
+const Task = ({ text }) => {
+    return (
+        <Container>
+            <IconButton type={images.uncompleted} />
+            <Contents>{text}</Contents>
+            <IconButton type={images.update} />
+            <IconButton type={images.delete} />
+        </Container>
+    );
+};
+
+Task.propTypes = {
+    text: PropTypes.string.isRequired,
+};
+
+export default Task;
+```
+
+<img src="/assets/images/210818_ch05/IconButton_and_Task.PNG" style="width:280px; object-fit:contain">
+
+
+<br/>
+
+---
+
+
+## 5.5 기능 구현하기
+
+<span style="color:coral; line-height:0.8">App.js</span>
+
+```javascript
+//...
+export default function app() {
+    //...
+    const _addTask = () => {
+        const ID = Date.new().toString();
+        const newTaskObject = {
+            [ID]: { id: ID, text: newTask, completed: false },
+        };
+        setNewTask('');
+        setTasks({ ...tasks, ...newTaskObject });
+    };
+    //...
+}
+```
+
+<span style="color:#f7df1e; font-height:0.5">setTasks({ ...tasks, ...newTaskObject });</span>  
+기존의 목록 tasks는 유지한 상태에서 새로운 항목이 추가되도록 구성
+
+<img src="/assets/images/210818_ch05/add_function.PNG" style="width:280px; object-fit:contain">
+
+
+
+
+
+
+
+
 
 
 
