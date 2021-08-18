@@ -445,6 +445,250 @@ export default IconButton;
 <img src="/assets/images/210818_ch05/delete_function.PNG" style="width:280px; object-fit:contain">
 
 
+<br/>
+
+
+### 3. 완료 기능
+완료한 항목은 수정 기능을 사용하지 않도록 수정 버튼을 없애고, 흐리게까지 만듦.
+
+<span style="color:coral; line-height:0.8">App.js</span>
+
+```javascript
+//...
+export default function App() {
+    //...
+    const _deleteTask = id => {
+        //...
+    };
+
+    const _toggleTask = id => {
+        const currentTasks = Object.assign({}, tasks);
+        currentTasks[id]['completed'] = !currentTasks[id]['completed'];
+        setTasks(currentTasks);
+    };
+    //...
+    return (
+        <ThemeProvider theme={theme}>
+            <Container>
+                //...
+                <List width={width}>
+                    {Object.values(tasks)
+                        .reverse()
+                        .map(item => (
+                            <Task
+                            key={item.id}
+                            item={item}
+                            deleteTask={_deleteTask}
+                            toggleTask={_toggleTask}
+                        />
+                        ))}
+                </List>
+            </Container>
+        </ThemeProvider>
+    );
+}
+```
+
+<span style="color:#f7df1e; font-height:0.5">Object.assign({}, tasks);</span>  
+{}에 tasks를 복사함. (열거할 수 있는 하나 이상의 속성들을 목표 객체로 복사해주는 함수)
+
+<br/>
+
+<span style="color:coral; line-height:0.8">Task.js</span>
+
+```javascript
+//...
+const Contents = styled.Text`
+    flex: 1;
+    font-size: 24px;
+    color: ${({ theme, completed }) => (completed ? theme.done : theme.text)};
+    text-decoration-line: ${({ completed }) =>
+        completed ? 'line-through' : 'none'};
+`;
+
+const Task = ({ item, deleteTask, toggleTask }) => {
+    return (
+        <Container>
+            <IconButton
+                type={item.completed ? images.completed : images.uncompleted}
+                id={item.id}
+                onPressOut={toggleTask}
+                completed={item.completed}
+            />
+            <Contents completed={item.completed}>{item.text}</Contents>
+            {item.completed || <IconButton type={images.update} />}
+            <IconButton
+                type={images.delete}
+                id={item.id}
+                onPressOut={deleteTask}
+                completed={item.completed}
+            />
+        </Container>
+    );
+};
+
+Task.propTypes = {
+    item: PropTypes.object.isRequired,
+    deleteTask: PropTypes.func.isRequired,
+    toggleTask: PropTypes.func.isRequired,
+};
+
+export default Task;
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">IconButton.js</span>
+
+```javascript
+//...
+const Icon = styled.Image`
+    tint-color: ${({ theme, completed }) =>
+        completed ? theme.done : theme.text};
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+`;
+
+const IconButton = ({ type, onPressOut, id, completed }) => {
+    const _onPressOut = () => {
+        onPressOut(id);
+    };
+
+    return (
+        <TouchableOpacity onPressOut={_onPressOut}>
+            <Icon source={type} completed={completed} />
+        </TouchableOpacity>
+    );
+};
+//...
+IconButton.propTypes = {
+    type: PropTypes.oneOf(Object.values(images)).isRequired,
+    onPressOut: PropTypes.func,
+    id: PropTypes.string,
+    completed: PropTypes.bool,
+};
+
+export default IconButton;
+```
+
+<img src="/assets/images/210818_ch05/toggle_function.PNG" style="width:280px; object-fit:contain">
+
+
+<br/>
+
+
+### 4. 수정 기능
+
+<span style="color:coral; line-height:0.8">App.js</span>
+
+```javascript
+//...
+export default function App() {
+    //...
+    const _toggleTask = id => {
+        //...
+    };
+
+    const _updateTask = item => {
+        const currentTasks = Object.assign({}, tasks);
+        currentTasks[item.id] = item;
+        setTasks(currentTasks);
+    };
+    //...
+    return (
+        <ThemeProvider theme={theme}>
+            <Container>
+                //...
+                <List width={width}>
+                    {Object.values(tasks)
+                        .reverse()
+                        .map(item => (
+                            <Task
+                            key={item.id}
+                            item={item}
+                            deleteTask={_deleteTask}
+                            toggleTask={_toggleTask}
+                            updateTask={_updateTask}
+                        />
+                        ))}
+                </List>
+            </Container>
+        </ThemeProvider>
+    );
+}
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">Task.js</span>
+
+```javascript
+import React, { useState } from 'react';
+import styled from 'styled-components/native';
+import PropTypes from 'prop-types';
+import IconButton from './IconButton';
+import { images } from '../images';
+import Input from './Input';
+//...
+const Task = ({ item, deleteTask, toggleTask, updateTask }) => {
+    const [isEditing, setIsEditing] = useState(false);
+    const [text, setText] = useState(item.text);
+
+    const _handleUpdateButtonPress = () => {
+        setIsEditing(true);
+    };
+
+    const _onSubmitEditing = () => {
+        if (isEditing) {
+            const editedTask = Object.assign({}, item, { text });
+            setIsEditing(false);
+            updateTask(editedTask);
+        }
+    };
+
+    return isEditing ? (
+        <Input
+            value={text}
+            onChangeText={text => setText(text)}
+            onSubmitEditing={_onSubmitEditing}
+        />
+    ) : (
+        <Container>
+            <IconButton
+                type={item.completed ? images.completed : images.uncompleted}
+                id={item.id}
+                onPressOut={toggleTask}
+                completed={item.completed}
+            />
+            <Contents completed={item.completed}>{item.text}</Contents>
+            {item.completed || (
+                <IconButton
+                    type={images.update}
+                    onPressOut={_handleUpdateButtonPress}
+                    />
+            )}
+            //...
+        </Container>
+    );
+};
+
+Task.propTypes = {
+    item: PropTypes.object.isRequired,
+    deleteTask: PropTypes.func.isRequired,
+    toggleTask: PropTypes.func.isRequired,
+    updateTask: PropTypes.func.isRequired,
+};
+
+export default Task;
+```
+
+<img src="/assets/images/210818_ch05/edit_function.PNG" style="width:280px; object-fit:contain">
+
+
+
+
+
 
 
 
@@ -469,9 +713,9 @@ export default IconButton;
 ---
 
 
-### 참고  
-* View vs. Fragment  
-https://www.reddit.com/r/reactnative/comments/cjoz9g/fragment_vs_view_tag/
+## 참고  
+* Object.assign()
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
 
 <div style="font-size:13px; text-align:right">
 <br/><br/>
