@@ -140,7 +140,8 @@ tags: [React Native, 창업 동아리, 스터디]
 * <span style="opacity:0.5">Expo eject 명령어</span>  
 https://velog.io/@max9106/React-Native-Expo-eject-v8k2akbliq
 https://floydkim.netlify.app/development/2019-05-04-React%20Native%20:%20EXPO%EC%99%80%20%EC%9D%B4%EB%B3%84%ED%95%98%EA%B8%B0/
-* * <span style="opacity:0.5">자바스크립트 번들러</span>  
+
+* <span style="opacity:0.5">자바스크립트 번들러</span>  
 https://gist.github.com/jeffminsungkim/9cd5c592dfe39a5eaae93ffcc1818cef
 
 
