@@ -136,7 +136,7 @@ tags: [React Native, 창업 동아리, 스터디]
 ---
 
 
-### 참고  
+## 참고  
 * Expo eject 명령어  
 https://velog.io/@max9106/React-Native-Expo-eject-v8k2akbliq
 https://floydkim.netlify.app/development/2019-05-04-React%20Native%20:%20EXPO%EC%99%80%20%EC%9D%B4%EB%B3%84%ED%95%98%EA%B8%B0/
