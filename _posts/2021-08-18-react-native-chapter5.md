@@ -686,12 +686,107 @@ export default Task;
 <img src="/assets/images/210818_ch05/edit_function.PNG" style="width:280px; object-fit:contain">
 
 
+<br/>
 
 
 
+### 5. 입력 취소하기
+항목을 추가하거나 수정하는 도중에 입력을 취소하는 방법을 구현
+
+<span style="color:coral; line-height:0.8">App.js</span>
+
+```javascript
+//...
+const Input = ({
+    placeholder,
+    value,
+    onChangeText,
+    onSubmitEditing,
+    onBlur,
+}) => {
+    const width = Dimensions.get('window').width;
+
+    return (
+        <StyledInput
+            //...
+            onSubmitEditing={onSubmitEditing}
+            onBlur={onBlur}
+        />
+    );
+};
+
+Input.propTypes = {
+    //...
+    onSubmitEditing: PropTypes.func.isRequired,
+    onBlur: PropTypes.func.isRequired,
+};
+
+export default Input;
+```
+
+<br/>
 
 
+<span style="color:coral; line-height:0.8">App.js</span>
 
+```javascript
+//...
+export default function App() {
+    //...
+    const _onBlur = () => {
+        setNewTask('');
+    };
+
+    return (
+        <ThemeProvider theme={theme}>
+            <Container>
+                //...
+                <Input
+                    placeholder="+ Add a Task"
+                    value={newTask}
+                    onChangeText={_handleTextChange}
+                    onSubmitEditing={_addTask}
+                    onBlur={_onBlur}
+                />
+                //...
+            </Container>
+        </ThemeProvider>
+    );
+}
+```
+
+
+<br/>
+
+
+<span style="color:coral; line-height:0.8">Task.js</span>
+
+```javascript
+//...
+const Task = ({ item, deleteTask, toggleTask, updateTask }) => {
+    //...
+    const _onBlur = () => {
+        if (isEditing) {
+            setIsEditing(false);
+            setText(item.text);
+        }
+    };
+
+    return isEditing ? (
+        <Input
+            value={text}
+            onChangeText={text => setText(text)}
+            onSubmitEditing={_onSubmitEditing}
+            onBlur={_onBlur}
+        />
+    ) : (
+        //...
+    );
+};
+//...
+```
+
+<img src="/assets/images/210818_ch05/cancel_function.PNG" style="width:600px; object-fit:contain">
 
 
 
@@ -714,7 +809,7 @@ export default Task;
 
 
 ## 참고  
-* Object.assign()
+* <span style="opacity:0.6">Object.assign()</span>  
 https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
 
 <div style="font-size:13px; text-align:right">
