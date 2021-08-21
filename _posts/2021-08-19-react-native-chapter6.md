@@ -463,8 +463,103 @@ const length = useMemo(() => getLength(text), [text]);
 
 
 ## 6.5 커스텀 Hooks 만들기
+  * 리액트 네이티브의 네트워크 통신 기능 중 Fetch를 활용해 useFetch라는 Hook을 만듦.
+  * 특정 API에 GET 요청을 보내고 결과를 성공 여부에 따라 data 또는 error에 담아서 반환함.
 
+<span style="color:coral; line-height:0.8">useFetch.js</span>
 
+```javascript
+import { useState, useEffect } from 'react';
+
+export const useFetch = url => {
+    const [data, setData] = useState(null);
+    const [error, setError] = useState(null);
+    const [inProgress, setInProgress] = useState(false);
+
+    useEffect(() => {
+        const fetchData = async () => {
+        try {
+            setInProgress(true);
+            const res = await fetch(url);
+            const result = await res.json();
+            if (res.ok) {
+                setData(result);
+                setError(null);
+            } else {
+                throw result;
+            }
+        } catch (error) {
+            setError(error);
+        } finally {
+            setInProgress(false);
+        }
+        };
+
+        fetchData();
+        }, []);
+
+    return { data, error, inProgress };
+}
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">Dog.js</span>
+
+```javascript
+import React from 'react';
+import styled from 'styled-components/native';
+import { useFetch } from '../hooks/useFetch';
+
+const StyledImage = styled.Image`
+    background-color: #7f8c8d;
+    width: 300px;
+    height: 300px;
+`;
+
+const ErrorMessage = styled.Text`
+    font-size: 18px;
+    color: #e74c3c;
+`;
+
+const LoadingMessage = styled.Text`
+    font-size: 18px;
+    color: #2ecc71;
+`;
+
+const URL = 'https://dog.ceo/api/breeds/image/random';
+const Dog = () => {
+    const { data, error, inProgress } = useFetch(URL)
+
+    return (
+        <>
+            {inProgress && (
+                <LoadingMessage>The API request is in progress</LoadingMessage>
+            )}
+            <StyledImage source={data?.message ? { uri: data.message } : null} />
+            <ErrorMessage>{error?.message}</ErrorMessage>
+        </>
+    );
+};
+
+export default Dog;
+```
+
+<img src="/assets/images/210819_ch06/custom_hooks.PNG" style="width:600px; object-fit:contain">
+
+<br/>
+
+* useEffect의 첫 번째 파라미터로 `비동기 함수(async)`를 전달하면 경고 메시지가 뜸.<br/>따라서 useEffect의 첫 번째 파라미터 안에서 비동기 함수를 `정의`하고 `사용`해야 함.
+  
+<br/>
+
+* 비동기 작업 화면에서는 작업이 완료되기 전에 화면 전체 또는 특정 버튼들이 사용할 수 없는 상태로 변경됨.<br/>'inProgress'라는 상태 변수로 비동기 동작에서 선행된 작업이 마무리되기 전에 추가적인 요청이 들어오지 못하게 구성함.
+
+<br/>
+
+### <span style="color:#cd853f">Plus.</span> 비동기 <span style="font-size:11px; opacity:0.6">asynchronism</span>
+특정 코드의 연산이 끝날 때까지 코드의 실행을 멈추지 않고 다음 코드를 먼저 실행함.
+  
 
 
 
@@ -514,11 +609,11 @@ const length = useMemo(() => getLength(text), [text]);
 
 
 ## 참고  
-* <span style="opacity:0.5">Object.assign()</span>  
-https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+* <span style="opacity:0.5">비동기</span>  
+https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/
 
-* <span style="opacity:0.5">async-storage 오류</span>  
-https://stackoverflow.com/questions/56029007/nativemodule-asyncstorage-is-null-with-rnc-asyncstorage
+* <span style="opacity:0.5">async & await</span>  
+https://joshua1988.github.io/web-development/javascript/js-async-await/#async--await%EB%8A%94-%EB%AD%94%EA%B0%80%EC%9A%94
 
 <div style="font-size:13px; text-align:right">
 <br/><br/>
