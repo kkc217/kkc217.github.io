@@ -571,7 +571,7 @@ export default Dog;
 * <span style="opacity:0.5">비동기</span>  
 https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/
 
-* <span style="opacity:0.5">async VS. await</span>  
+* <span style="opacity:0.5">async &. await</span>  
 https://joshua1988.github.io/web-development/javascript/js-async-await/#async--await%EB%8A%94-%EB%AD%94%EA%B0%80%EC%9A%94
 
 <div style="font-size:13px; text-align:right">
