@@ -561,47 +561,6 @@ export default Dog;
 특정 코드의 연산이 끝날 때까지 코드의 실행을 멈추지 않고 다음 코드를 먼저 실행함.
   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <br/>
 
 
@@ -612,7 +571,7 @@ export default Dog;
 * <span style="opacity:0.5">비동기</span>  
 https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/
 
-* <span style="opacity:0.5">async & await</span>  
+* <span style="opacity:0.5">async VS. await</span>  
 https://joshua1988.github.io/web-development/javascript/js-async-await/#async--await%EB%8A%94-%EB%AD%94%EA%B0%80%EC%9A%94
 
 <div style="font-size:13px; text-align:right">
