@@ -87,6 +87,192 @@ expo install react-native-gesture-handler react-native-reanimated react-native-s
 <span style="color:coral; font-weight:bold">! 리액트 내비게이션은 각 기능별로 모듈이 분리되어 있어, 사용하는 내비게이션의 종류에 따라 개별적으로 추가 라이브러리를 설치해야 함.</span>
 
 
+<br/>
+
+---
+
+
+## 8.2 스택 내비게이션
+
+  * 일반적으로 가장 많이 사용되는 내비게이션
+  * 현재 화면 위에 다른 화면을 쌓으면서 화면을 이동함.
+  * 화면 위에 새로운 화면을 쌓으면서(`push`) 이동하기 때문에 이전 화면을 계속 유지함.
+  * 가장 위에 있는 화면을 들어내면(`pop`) 이전 화면으로 돌아갈 수 있음.
+  * 스택 내비게이션 활용에 필요한 라이브러리를 설치해야 함.
+
+```
+npm install @react-navigation/stack
+```
+
+<br/>
+
+### 1. 화면 구성
+
+  * `Home 화면`: 첫 화면으로 사용.
+  * 화면을 확인하기 위한 텍스트와 다음 화면인 List 화면으로 이동하기 위한 버튼으로 구성함.
+
+<span style="color:coral; line-height:0.8">screens/Home.js</span>
+
+```javascript
+import React from 'react';
+import { Button } from 'react-native';
+import styled from 'styled-components/native';
+
+const Container = styled.View`
+    align-items: center;
+`;
+
+const StyledText = styled.Text`
+    font-size: 30px;
+    margin-bottom: 10px;
+`;
+
+const Home = () => {
+    return (
+        <Container>
+            <StyledText>Home</StyledText>
+            <Button title="go to the list screen" />
+        </Container>
+    );
+};
+
+export default Home;
+```
+
+<br/>
+
+  * `List 화면`
+  * 화면에서 사용할 임시 목록을 만들고, 항목 수만큼 버튼을 생성하도록 만듦.
+
+<span style="color:coral; line-height:0.8">screens/List.js</span>
+
+```javascript
+import React from 'react';
+import { Button } from 'react-native';
+import styled from 'styled-components/native';
+
+const Container = styled.View`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+`;
+
+const StyledText = styled.Text`
+    font-size: 30px;
+    margin-bottom: 10px;
+`;
+
+const items = [
+    { _id: 1, name: 'React Native' },
+    { _id: 2, name: 'React Navigation' },
+    { _id: 3, name: 'Hanbit' },
+];
+
+const List = () => {
+    const _onPress = item => {};
+
+    return (
+        <Container>
+            <StyledText>List</StyledText>
+            {items.map(item => (
+                <Button
+                    Key={item._id}
+                    title={item.name}
+                    onPress={() => _onPress(item)}
+                />
+            ))}
+        </Container>
+    );
+};
+
+export default List;
+```
+
+<br/>
+
+  * 목록의 상세 정보를 보여주는 컴포넌트
+
+<span style="color:coral; line-height:0.8">screens/Item.js</span>
+
+```javascript
+import React from 'react';
+import styled from 'styled-components/native';
+
+const Container = styled.View`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+`;
+
+const StyledText = styled.Text`
+    font-size: 30px;
+    margin-bottom: 10px;
+`;
+
+const Item = () => {
+    return (
+        <Container>
+            <StyledText>Item</StyledText>
+        </Container>
+    );
+};
+
+export default Item;
+```
+
+<br/>
+
+  * 앞서 생성한 screens의 컵포넌트를 이용해 스택 내비게이션을 구성.
+  * `createStackNavvigator` 함수를 이용해 스택 내비게이션을 생성.
+  * 화면을 구성하는 `Screen` 컴포넌트와 Screen 컴포넌트를 관리하는 `Navigator` 컴포넌트가 있음.
+  * Navigator 컴포넌트 안에 Screen 컴포넌트를 자식 컴포넌트로 작성하고, 앞서 만든 컴포넌트를 Screen 컴포넌트의 component로 지정.
+  * Navigator의 `initialRouteName` 속성을 이용해 첫 번째 화면을 지정할 수 있음.<br/><span style="color:coral; font-weight:bold">! name에는 화면의 이름을 작성하는데, 반드시 서로 서로 다른 값을 가져야 함.</span>
+
+<span style="color:coral; line-height:0.8">navigations/Stack.js</span>
+
+```javascript
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import Home from '../screens/Home';
+import List from '../screens/List';
+import Item from '../screens/Item';
+
+const Stack = createStackNavigator();
+
+const StackNavigation = () => {
+    return (
+        <Stack.Navigator initialRouteName="List">
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="List" component={List} />
+            <Stack.Screen name="Item" component={Item} />
+        </Stack.Navigator>
+    );
+};
+
+export default StackNavigation;
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">App.js</span>
+
+```javascript
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import StackNavigation from './navigations/Stack';
+
+const App = () => {
+    return (
+        <NavigationContainer>
+            <StackNavigation />
+        </NavigationContainer>
+    );
+};
+
+export default App;
+```
+
+<img src="/assets/images/210904_ch08/StackNavigation_screen_composition.PNG" style="width:200px; object-fit:contain">
 
 
 
