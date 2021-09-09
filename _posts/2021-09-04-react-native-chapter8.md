@@ -274,6 +274,10 @@ export default App;
 
 <img src="/assets/images/210904_ch08/StackNavigation_screen_composition.PNG" style="width:200px; object-fit:contain">
 
+<br/>
+
+### 2. 화면 이동
+
 
 
 
