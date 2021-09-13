@@ -210,7 +210,7 @@ export default App;
   * `space-evenly`: 컴포넌트 사이와 양 끝에 동일한 공간을 만들어서 정렬
 
 <img src="/assets/images/210816_ch04/justifyContent_and_alignItems.PNG" style="width:600px; object-fit:contain"><br/>
-<img src="/assets/images/210816_ch04/justifycontent_picture.PNG" style="width:600px; object-fit:contain"><br/>
+<img src="/assets/images/210816_ch04/justifyContent_picture.PNG" style="width:600px; object-fit:contain"><br/>
 
 
 <br/>
