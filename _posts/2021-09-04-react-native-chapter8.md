@@ -410,7 +410,7 @@ const StackNavigation = () => {
 <br/>
 
 
-#### <div style="font-size:1.2em; color:cornflowerblue;">스타일 수정하기</div>
+#### <span style="font-size:1.2em; color:cornflowerblue;">스타일 수정하기</span>
 
 
 
