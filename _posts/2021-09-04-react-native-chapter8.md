@@ -432,6 +432,7 @@ const StackNavigation = () => {
                     borderBottomColor: '#34495e',
                 },
                 headerTitleStyle: { color: '#ffffff', fontSize: 24 },
+                headerTitleAlign: 'center',
             }}
         >
             //...
