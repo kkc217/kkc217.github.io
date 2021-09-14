@@ -415,31 +415,6 @@ const StackNavigation = () => {
   * `headerStyle`: 배경색 등을 수정
   * `headerTitleStyle`: 헤더의 타이틀 컴포넌트의 스타일을 수정
 
-<span style="color:coral; line-height:0.8">navigations/Stack.js</span>
-
-```javascript
-//...
-const StackNavigation = () => {
-    return (
-        <Stack.Navigator
-            initialRouteName="Home"
-            screenOptions={{
-                cardStyle: { backgroundColor: '#ffffff' },
-                headerStyle: {
-                    height: 110,
-                    backgroundColor: '#95a5a6',
-                    borderBottomWidth: 5,
-                    borderBottomColor: '#34495e',
-                },
-                headerTitleStyle: { color: '#ffffff', fontSize: 24 },
-            }}
-        >
-        </Stack.Navigator>
-    );
-};
-//...
-```
-
 <img src="/assets/images/210904_ch08/header_style_change.PNG" style="width:200px; object-fit:contain">
 
 <span style="color:coral; font-size:0.8em">! 헤더의 타이틀이 iOS에서는 중앙에 있는 반면, 안드로이드는 중앙으로 정렬되지 않음.</span>
@@ -449,11 +424,7 @@ const StackNavigation = () => {
   * `headerTitleAlign` 속성으로 헤더의 타이틀 정렬을 설정할 수 있음.
   * `left`와 `center` 두 가지 값만 설정 가능. (iOS-center, 안드로이드-left가 기본값)
 
-<span style="color:coral; line-height:0.8">navigations/Stack.js</span>
-
-```javascript
-
-```
+<img src="/assets/images/210904_ch08/header_title_align.PNG" style="width:200px; object-fit:contain">
 
 
 <br/>
