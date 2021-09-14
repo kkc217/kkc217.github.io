@@ -278,17 +278,139 @@ export default App;
 
 ### 2. 화면 이동
 
+  * Screen 컴포넌트의 component로 지정된 컴포넌트는 화면으로 이용되고, `navigation`이 `props`로 전달됨.
+  * navigation의 기능 중 `navigate 함수`는 원하는 화면으로 이동하는 데 사용됨.
+  * navigate 함수에 전달되는 화면의 이름은 Screen 컴포넌트의 name값 중 하나를 입력해야 함.
+
+<span style="color:coral; line-height:0.8">screens/Home.js</span>
+
+```javascript
+//...
+const Home = ({ navigation }) => {
+    return (
+        <Container>
+            <StyledText>Home</StyledText>
+            <Button
+                title="go to the list screen"
+                onPress={() => navigation.navigate('List')}
+            />
+        </Container>
+    );
+};
+//...
+```
+
+<img src="/assets/images/210904_ch08/stack_navigation_navigate_func.PNG" style="width:400px; object-fit:contain">
+
+<br/>
+
+  * 이동하는 화면이 이전 화면의 `상세 화면`이라면 어떤 내용을 렌더링해야 하는지 전달받아야 함.<br/>→ navigate 함수의 두 번째 파라미터에 객체를 전달해 이동하는 화면에 필요한 정보를 함께 전달할 수 있음.
+
+<span style="color:coral; line-height:0.8">screens/List.js</span>
+
+```javascript
+//...
+const List = ({ navigation }) => {
+    const _onPress = item => {
+        navigation.navigate('Item', { id: item._id, name: item.name });
+    };
+    //...
+};
+//...
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">screens/Item.js</span>
+
+```javascript
+//...
+const Item = ({ route }) => {
+    return (
+        <Container>
+            <StyledText>Item</StyledText>
+            <StyledText>ID: {route.params.id}</StyledText>
+            <StyledText>Name: {route.params.name}</StyledText>
+        </Container>
+    );
+};
+//...
+```
+
+<img src="/assets/images/210904_ch08/stack_navigation_screen_move.PNG" style="width:600px; object-fit:contain">
+
+<br/>
+
+### 3. 화면 배경색 수정하기
+
+ * 각 screen 컴포넌트에서 배경색을 지정할 수 있음.
+ * But, 아래 화면 처럼 일부분만 색이 바뀜.<br/>→ 내비게이션은 화면 전체를 차지하고 있지만, 화면으로 사용된 컴포넌트의 영역이 전체를 차지하고 있지 않아서 생기는 문제
+
+<img src="/assets/images/210904_ch08/stack_navigation_change_color.PNG" style="width:200px; object-fit:contain">
+
+<br/>
+
+  * 화면 컴포넌트가 전체 영역을 차지하도록 스타일에 `flex: 1`을 설정해도 되지만, 상황에 따라 화면 전체를 차지 못 할 수도 있음.
+  * 리액트 내비게이션의 설정을 수정해 해결 가능. (stack navigation 전체의 색을 변경.)
+  * `cardStyle`을 이용하면 스택 내비게이션의 화면 배경색을 수정할 수 있음.
+  * 화면마다 설정하지 않고 Navigator 컴포넌트의 `screenOptions`에 설정해 화면 전체에 적용되도록 할 수 있음.
+
+<img src="/assets/images/210904_ch08/stack_navigation_change_all_color.PNG" style="width:200px; object-fit:contain">
+
+<br/>
+
+### 4. 헤더 수정하기
+
+`헤더` → 뒤로 가기 버튼을 제공하거나 타이틀을 통해 현재 화면을 알려주는 역할을 함.
 
 
+<div style="font-size:1.2em; color:cornflowerblue;">타이틀 수정하기</div>
 
+  * 헤더의 타이틀은 Screen 컴포넌트의 name 속성을 기본값으로 사용함.<br/><span style="color:coral">! 간편하게 바꿀 수는 있지만, name 속성을 사용한 곳을 찾아다니며 모두 수정해야함.</span>
+  * `headerTitle` 속성을 이용하면 됨.
+  * 모든 화면에서 같은 타이틀이 나타나도록 수정하려면 `Navigator 컴포넌트`의 `screen Options` 속성에 `headerTitle`을 지정하면 됨.
 
+<span style="color:coral; line-height:0.8">navigations/Stack.js</span>
 
+```javascript
+//...
+const StackNavigation = () => {
+    return (
+        <Stack.Navigator
+            //...
+        >
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen
+                name="List"
+                component={List}
+                options={{ headerTitle: 'List Screen' }}
+            />
+            <Stack.Screen name="Detail" component={Item} />
+        </Stack.Navigator>
+    );
+};
+//...
+```
 
+<img src="/assets/images/210904_ch08/changing_title_name.PNG" style="width:200px; object-fit:contain">
 
+<br/>
 
+### <span style="color:#cd853f">Plus.</span> 안드로이드 스튜디오 에뮬레이터 오류
 
+기존에 사용하던대로 안드로이드 스튜디오 에뮬레이터를 사용하려는데 에뮬레이터가 이전에 썼던 화면에서 멈춰 추가적인 동작이 전혀 안 됨.<br/>→ 에뮬레이터에 저장되어 있던 기존의 데이터를 지워서 해결함.
 
+<img src="/assets/images/210904_ch08/android_studio_AVD_error_fix_1.PNG" style="width:200px; object-fit:contain">
 
+<br/>
+
+<img src="/assets/images/210904_ch08/android_studio_AVD_error_fix_2.PNG" style="width:200px; object-fit:contain">
+
+<br/>
+
+<div style="font-size:1.2em; color:cornflowerblue;">타이틀 수정하기</div>
+
+#### e. gkgkg
 
 
 
