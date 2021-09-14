@@ -364,7 +364,7 @@ const Item = ({ route }) => {
 `헤더` → 뒤로 가기 버튼을 제공하거나 타이틀을 통해 현재 화면을 알려주는 역할을 함.
 
 
-<div style="font-size:1.2em; color:cornflowerblue;">타이틀 수정하기</div>
+#### <div style="font-size:1.2em; color:cornflowerblue;">타이틀 수정하기</div>
 
   * 헤더의 타이틀은 Screen 컴포넌트의 name 속성을 기본값으로 사용함.<br/><span style="color:coral">! 간편하게 바꿀 수는 있지만, name 속성을 사용한 곳을 찾아다니며 모두 수정해야함.</span>
   * `headerTitle` 속성을 이용하면 됨.
@@ -396,7 +396,7 @@ const StackNavigation = () => {
 
 <br/>
 
-### <span style="color:#cd853f">Plus.</span> 안드로이드 스튜디오 에뮬레이터 오류
+#### <span style="color:#cd853f">Plus.</span> 안드로이드 스튜디오 에뮬레이터 오류
 
 기존에 사용하던대로 안드로이드 스튜디오 에뮬레이터를 사용하려는데 에뮬레이터가 이전에 썼던 화면에서 멈춰 추가적인 동작이 전혀 안 됨.<br/>→ 에뮬레이터에 저장되어 있던 기존의 데이터를 지워서 해결함.
 
@@ -406,11 +406,13 @@ const StackNavigation = () => {
 
 <img src="/assets/images/210904_ch08/android_studio_AVD_error_fix_2.PNG" style="width:200px; object-fit:contain">
 
+
 <br/>
 
-<div style="font-size:1.2em; color:cornflowerblue;">타이틀 수정하기</div>
 
-#### e. gkgkg
+#### <div style="font-size:1.2em; color:cornflowerblue;">스타일 수정하기</div>
+
+
 
 
 
