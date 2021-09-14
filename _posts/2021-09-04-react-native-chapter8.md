@@ -418,7 +418,27 @@ const StackNavigation = () => {
 <span style="color:coral; line-height:0.8">navigations/Stack.js</span>
 
 ```javascript
-
+//...
+const StackNavigation = () => {
+    return (
+        <Stack.Navigator
+            initialRouteName="Home"
+            screenOptions={{
+                cardStyle: { backgroundColor: '#ffffff' },
+                headerStyle: {
+                    height: 110,
+                    backgroundColor: '#95a5a6',
+                    borderBottomWidth: 5,
+                    borderBottomColor: '#34495e',
+                },
+                headerTitleStyle: { color: '#ffffff', fontSize: 24 },
+            }}
+        >
+            //...
+        </Stack.Navigator>
+    );
+};
+//...
 ```
 
 <img src="/assets/images/210904_ch08/header_style_change.PNG" style="width:200px; object-fit:contain">
