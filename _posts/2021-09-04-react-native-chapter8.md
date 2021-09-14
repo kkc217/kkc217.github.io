@@ -432,10 +432,8 @@ const StackNavigation = () => {
                     borderBottomColor: '#34495e',
                 },
                 headerTitleStyle: { color: '#ffffff', fontSize: 24 },
-                headerTitleAlign: 'center',
             }}
         >
-            //...
         </Stack.Navigator>
     );
 };
@@ -462,8 +460,6 @@ const StackNavigation = () => {
 
 
 #### <span style="font-size:1.2em; color:cornflowerblue;">- 타이틀 컴포넌트 변경</span>
-
-d
 
 
 
