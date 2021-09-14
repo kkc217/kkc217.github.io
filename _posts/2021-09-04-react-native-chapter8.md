@@ -400,11 +400,11 @@ const StackNavigation = () => {
 
 기존에 사용하던대로 안드로이드 스튜디오 에뮬레이터를 사용하려는데 에뮬레이터가 이전에 썼던 화면에서 멈춰 추가적인 동작이 전혀 안 됨.<br/>→ 에뮬레이터에 저장되어 있던 기존의 데이터를 지워서 해결함.
 
-<img src="/assets/images/210904_ch08/android_studio_AVD_error_fix_1.PNG" style="width:200px; object-fit:contain">
+<img src="/assets/images/210904_ch08/android_studio_AVD_error_fix_1.PNG" style="width:500px; object-fit:contain">
 
 <br/>
 
-<img src="/assets/images/210904_ch08/android_studio_AVD_error_fix_2.PNG" style="width:200px; object-fit:contain">
+<img src="/assets/images/210904_ch08/android_studio_AVD_error_fix_2.PNG" style="width:500px; object-fit:contain">
 
 
 <br/>
@@ -424,14 +424,9 @@ const StackNavigation = () => {
         <Stack.Navigator
             initialRouteName="Home"
             screenOptions={{
-                cardStyle: { backgroundColor: '#ffffff' },
-                headerStyle: {
-                    height: 110,
-                    backgroundColor: '#95a5a6',
-                    borderBottomWidth: 5,
-                    borderBottomColor: '#34495e',
-                },
+                //...
                 headerTitleStyle: { color: '#ffffff', fontSize: 24 },
+                headerTitleAlign: 'center',
             }}
         >
             //...
@@ -475,7 +470,7 @@ const StackNavigation = () => {
 <br/>
 
 
-#### <span style="font-size:1.2em; color:cornflowerblue;">- 스타일 수정하기</span>
+#### <span style="font-size:1.2em; color:cornflowerblue;">- 타이틀 컴포넌트 변경</span>
 
 
 
