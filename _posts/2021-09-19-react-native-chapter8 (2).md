@@ -341,14 +341,14 @@ const TabNavigation = () => {
             <Tab.Screen
                 name="Mail"
                 component={Mail}
-                options={{
+                options={
                     tabBarLabel: 'Inbox',
                     tabBarIcon: props =>
                         TabIcon({
                             ...props,
                             name: props.focused ? 'email' : 'email-outline',
                         }),
-                }}
+                }
             />
             <Tab.Screen
                 name="Meet"
