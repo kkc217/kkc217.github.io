@@ -545,8 +545,6 @@ const StackNavigation = () => {
 
 ```javascript
 //...
-import { Platform } from 'react-native';
-//...
 <Stack.Screen
   name="List"
   component={List}
