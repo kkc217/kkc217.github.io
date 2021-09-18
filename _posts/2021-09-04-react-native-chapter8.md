@@ -445,7 +445,7 @@ const StackNavigation = () => {
 <MaterialCommunityIcons name="react" style={style} />
 //... 
 ```
-
+<img src="/assets/images/210904_ch08/stack_navigation_title_component_change.PNG" style="width:200px; object-fit:contain">
 
 
 
