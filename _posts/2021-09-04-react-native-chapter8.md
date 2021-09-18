@@ -560,13 +560,73 @@ headerBackImage: ({ tintColor }) => {
 
   <br/>
   
-  * 
+<span style="color:#f7df1e">useLayoutEffect Hook</span>  
 
+  * useEffect Hook와 사용법과 동작 방식이 거의 같음.
+  * useEffect Hook과 달리 컴포넌트가 업데이트된 직후 화면이 렌더링되기 전에 실행됨.
+  * 따라서 `화면을 렌더링하기 전`에 변경할 부분이 있거나 수치 등을 측정해야 하는 상황에서 많이 상요됨.
 
+<br/>
 
+<span style="color:#f7df1e">headerLeft</span>
 
+  * 파라미터로 다양한 값들이 전달됨.
+  * `onPress`는 뒤로가기 버튼 기능이 전달됨.<br/>→ 뒤로 가기 버튼의 기능을 그대로 기용하고 싶은 경우 유용하게 사용 가능.
 
+<br/>
 
+<span style="color:#f7df1e">headerRight</span>  
+
+  * 함수의 파라미터에 `tintColor`만 전달되므로 `onPress`에 원하는 행동을 정의해줘야 함.
+  * `popToTop` 함수는 현재 쌓여 있는 모든 화면을 내보내고 첫 화면으로 돌아가는 기능<br/>→ 이 함수를 onPress에 전달하여 첫 화면으로 돌아가도록 작성함.
+
+<span style="color:coral; line-height:0.8">screens/Item.js</span>
+
+```javascript
+import React, { useLayoutEffect } from 'react';
+import styled from 'styled-components/native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+//...
+const Item = ({ navigation, route }) => {
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerBackTitleVisible: false,
+            headerTintColor: '#ffffff',
+            headerLeft: ({ onPress, tintColor }) => {
+                return (
+                    <MaterialCommunityIcons
+                        name="keyboard-backspace"
+                        size={30}
+                        style={{ marginLeft: 11 }}
+                        color={tintColor}
+                        onPress={onPress}
+                    />
+                );
+            },
+            headerRight: ({ tintColor }) => (
+                <MaterialCommunityIcons
+                    name="home-variant"
+                    size={30}
+                    style={{ marginRight: 11 }}
+                    color={tintColor}
+                    onPress={() => navigation.popToTop()}
+                />
+            ),
+        });
+    }, []);
+
+    return (
+        <Container>
+            <StyledText>Item</StyledText>
+            <StyledText>ID: {route.params.id}</StyledText>
+            <StyledText>Name: {route.params.name}</StyledText>
+        </Container>
+    );
+};
+//...
+```
+
+<img src="/assets/images/210904_ch08/button_component_change.PNG" style="width:200px; object-fit:contain">
 
 
 
