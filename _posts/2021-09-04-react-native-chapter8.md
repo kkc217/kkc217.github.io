@@ -481,6 +481,8 @@ const StackNavigation = () => {
   * 이전 화면의 이름이 아닌 다른 값을 이용할 수도 있음.
   * `headerBackTitle` 속성을 이용하면 됨.
 
+<span style="color:coral; line-height:0.8">navigations/Stack.js</span>
+
 ```javascript
 //...
 <Stack.Screen
@@ -497,6 +499,81 @@ const StackNavigation = () => {
 
 <img src="/assets/images/210904_ch08/button_headerBackTitle.PNG" style="width:200px; object-fit:contain">
 
+<span style="color:coral; line-height:0.9">! 버튼의 타이틀에 빈 값을 주고 싶은 경우 headerBackTitleVisible을 이용해서 보이지 않도록 해야 함.</span>
+
+
+<br/>
+
+
+#### <span style="font-size:1.2em; color:cornflowerblue;">- 버튼 스타일 수정하기</span>
+
+  * `headerBackTitleStyle`을 이용해 글자의 색, 크기 등 다양한 스타일을 지정할 수 있음.<br/>But, 버튼의 타이틀에만 적용됨.
+  * `headerTintColor`를 이용하면 버튼의 타이틀과 이미지의 색을 동일하게 변경할 수 있음.
+  * headerTintColor에 지정된 색은 버튼뿐만 아니라 헤더의 타이틀에도 적용됨.
+  * headerTintColor보다 `TitleStyle` 또는 `headerBackTitleStyle`의 우선순위가 높으므로 겹치지 않도록 잘 사용해야 함.
+
+<span style="color:coral; line-height:0.8">navigations/Stack.js</span>
+
+```javascript
+//...
+<Stack.Screen
+  name="List"
+  component={List}
+  options={{
+      headerTitle: 'List Screen',
+      headerBackTitleVisible: true,
+      headerBackTitle: 'Prev',
+      headerTitleStyle: { fontSize: 24 },
+      headerTintColor: '#e74c3c',
+  }}
+/>
+//... 
+```
+
+<img src="/assets/images/210904_ch08/button_style_change.PNG" style="width:200px; object-fit:contain">
+
+
+<br/>
+
+
+#### <span style="font-size:1.2em; color:cornflowerblue;">- 버튼 컴포넌트 변경</span>
+
+  * 뒤로 가기 버튼의 아이콘을 변경할 수 있음.
+  * `headerBackImage`에 컴포넌트를 반환하는 `함수`를 전달하면 됨.
+
+<span style="color:coral; line-height:0.8">navigations/Stack.js</span>
+
+```javascript
+//...
+import { Platform } from 'react-native';
+//...
+<Stack.Screen
+  name="List"
+  component={List}
+  options={{
+      headerTitle: 'List Screen',
+      headerBackTitleVisible: true,
+      headerBackTitle: 'Prev',
+      headerTitleStyle: { fontSize: 24 },
+      headerTintColor: '#e74c3c',
+      headerBackImage: ({ tintColor }) => {
+          const style = {
+              marginRight: 5,
+              marginLeft: Platform.OS === 'ios' ? 11 : 0,
+          };
+          return (
+              <MaterialCommunityIcons
+                  name="keyboard-backspace"
+                  size={30}
+                  color={tintColor}
+                  style={style}
+              />
+          );
+      },
+  }}
+/>
+//... 
+```
 
 
 
