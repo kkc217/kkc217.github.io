@@ -353,13 +353,13 @@ const TabNavigation = () => {
             <Tab.Screen
                 name="Meet"
                 component={Meet}
-                options={{
+                options={
                     tabBarIcon: props =>
                         TabIcon({
                             ...props,
                             name: props.focused ? 'video' : 'video-outline',
                         }),
-                }}
+                }
             />
             <Tab.Screen
                 name="Settings"
