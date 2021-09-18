@@ -89,7 +89,7 @@ const TabNavigation = () => {
 export default TabNavigation;
 ```
 
-<img src="/assets/images/210904_ch08/tab_navigation_setting.PNG" style="width:200px; object-fit:contain">
+<img src="/assets/images/210919_ch08/tab_navigation_setting.PNG" style="width:200px; object-fit:contain">
 
 
 <br/>
@@ -193,7 +193,7 @@ const TabNavigation = () => {
 export default TabNavigation;
 ```
 
-<img src="/assets/images/210904_ch08/tab_navigation_button_icon.PNG" style="width:200px; object-fit:contain">
+<img src="/assets/images/210919_ch08/tab_navigation_button_icon.PNG" style="width:200px; object-fit:contain">
 
 <span style="color:coral; font-size:0.8em; font-weight:bold">! "setting"이라는 아이콘을 불러오지 못함. (자세한 원인은 모르겠음.)</span>
 
@@ -228,6 +228,10 @@ const TabNavigation = () => {
 //...
 ```
 
+<br/>
+
+  * 라벨을 버튼 아이콘의 아래가 아닌 아이콘 `옆에` 렌더링되도록 변경할 수 있음.
+  * `labelPosition`을 사용하며, 속성값으로 `below-icon`과 `beside-icon`만 설정할 수 있음.
 
 
 
