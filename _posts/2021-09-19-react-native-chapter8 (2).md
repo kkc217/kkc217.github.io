@@ -241,7 +241,7 @@ const TabNavigation = () => {
     return (
         <Tab.Navigator
             initialRouteName="Settings"
-            tabBarOptions={{ labelPosition: 'beside-icon' }}
+            tabBarOptions={ labelPosition: 'beside-icon' }
         >
             //...
         </Tab.Navigator>
@@ -364,13 +364,13 @@ const TabNavigation = () => {
             <Tab.Screen
                 name="Settings"
                 component={Settings}
-                options={{
+                options={
                     tabBarIcon: props =>
                         TabIcon({
                             ...props,
                             name: props.focused ? 'settings' : 'settings-outline',
                         }),
-                }}
+                }
             />
         </Tab.Navigator>
     );
