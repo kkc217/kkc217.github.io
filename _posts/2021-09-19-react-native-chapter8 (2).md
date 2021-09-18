@@ -293,7 +293,7 @@ const TabNavigation = () => {
     return (
         <Tab.Navigator
             initialRouteName="Settings"
-            tabBarOptions={{
+            tabBarOptions={
                 labelPosition: 'beside-icon',
                 showLabel: false,
                 style: {
@@ -303,7 +303,7 @@ const TabNavigation = () => {
                 },
                 activeTintColor: '#ffffff',
                 inactiveTintColor: '#0B92E9',
-            }}
+            }
         >
             //...
         </Tab.Navigator>
@@ -326,7 +326,7 @@ const TabNavigation = () => {
     return (
         <Tab.Navigator
             initialRouteName="Settings"
-            tabBarOptions={{
+            tabBarOptions={
                 labelPosition: 'beside-icon',
                 showLabel: false,
                 style: {
@@ -336,7 +336,7 @@ const TabNavigation = () => {
                 },
                 activeTintColor: '#ffffff',
                 inactiveTintColor: '#cfcfcf',
-            }}
+            }
         >
             <Tab.Screen
                 name="Mail"
