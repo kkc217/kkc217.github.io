@@ -252,16 +252,29 @@ const TabNavigation = () => {
 
 <img src="/assets/images/210919_ch08/tab_navigation_label_position.PNG" style="width:200px; object-fit:contain">
 
+<br/>
 
-
-
-
+  * 라벨을 렌더링하지 않고 아이콘만 사용할 수도 있음.
+  * `showLabel`을 이용하면 됨.
 
 <span style="color:coral; line-height:0.8">navigations/Tab.js</span>
 
 ```javascript
+//...
+const TabNavigation = () => {
+    return (
+        <Tab.Navigator
+            initialRouteName="Settings"
+            tabBarOptions={{ labelPosition: 'beside-icon', showLabel: false }}
+        >
+            //...
+        </Tab.Navigator>
+    );
+};
+//...
 ```
 
+<img src="/assets/images/210919_ch08/tab_navigation_label_invisible.PNG" style="width:200px; object-fit:contain">
 
 
 
