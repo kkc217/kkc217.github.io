@@ -432,6 +432,42 @@ const StackNavigation = () => {
 
 #### <span style="font-size:1.2em; color:cornflowerblue;">- 타이틀 컴포넌트 변경</span>
 
+  * 타이틀에 문자열이 아닌 다른 것을 렌더링할 수 있음.
+  * `headerTitle` 속성에 컴포넌트를 반환하는 함수를 지정<br/>→ 타이틀 컴포넌트를 반환하는 컴포넌트로 변경할수 있음.
+  * headerTitle에 함수가 설정되면 해당 함수의 `파라미터로` style과 tintColor 등이 포함된 `객체`가 전될됨.
+  * `style`: headerTitleStyle에 설정된 값
+  * `tintColor`: headerTitleColor에 지정된 값
+
+<span style="color:coral; line-height:0.8">navigations/Stack.js</span>
+
+```javascript
+//...
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+//...
+const StackNavigation = () => {
+    return (
+        <Stack.Navigator
+            initialRouteName="Home"
+            screenOptions={{
+                //...
+                headerTitle: ({ style }) => (
+                    <MaterialCommunityIcons name="react" style={style} />
+                ),
+            }}
+        >
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen
+                name="List"
+                component={List}
+                options={{ headerTitle: 'List Screen' }}
+            />
+            <Stack.Screen name="Detail" component={Item} />
+        </Stack.Navigator>
+    );
+};
+
+export default StackNavigation;
+```
 
 
 
