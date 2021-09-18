@@ -449,6 +449,57 @@ const StackNavigation = () => {
 <img src="/assets/images/210904_ch08/stack_navigation_title_component_change.PNG" style="width:200px; object-fit:contain">
 
 
+<br/>
+
+
+#### <span style="font-size:1.2em; color:cornflowerblue;">- 버튼 수정하기</span>
+
+  * 이전 화면으로 이동하는 뒤로 가기 버튼이 자동으로 생김.
+  * `안드로이드` - 버튼의 타이틀을 보여주지 않음.
+  * `iOS` - 이전 화면의 타이틀을 버튼의 타이틀로 보여줌.
+  * `headerBackTitleVisible` 속성을 이용해 안드로이드에서도 버튼의 타이틀을 보여줄 수 있음.
+
+<span style="color:coral; line-height:0.8">navigations/Stack.js</span>
+
+```javascript
+//...
+<Stack.Screen
+  name="List"
+  component={List}
+  options={{
+      headerTitle: 'List Screen',
+      headerBackTitleVisible: true,
+  }}
+/>
+//... 
+```
+
+<img src="/assets/images/210904_ch08/button_headerBackTitleVisibel.PNG" style="width:200px; object-fit:contain">
+
+<br/>
+
+  * 이전 화면의 이름이 아닌 다른 값을 이용할 수도 있음.
+  * `headerBackTitle` 속성을 이용하면 됨.
+
+```javascript
+//...
+<Stack.Screen
+  name="List"
+  component={List}
+  options={{
+      headerTitle: 'List Screen',
+      headerBackTitleVisible: true,
+      headerBackTitle: 'Prev',
+  }}
+/>
+//... 
+```
+
+<img src="/assets/images/210904_ch08/button_headerBackTitle.PNG" style="width:200px; object-fit:contain">
+
+
+
+
 
 
 
