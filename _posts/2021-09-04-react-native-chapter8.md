@@ -442,31 +442,8 @@ const StackNavigation = () => {
 
 ```javascript
 //...
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-//...
-const StackNavigation = () => {
-    return (
-        <Stack.Navigator
-            initialRouteName="Home"
-            screenOptions={{
-                //...
-                headerTitle: ({ style }) => (
-                    <MaterialCommunityIcons name="react" style={style} />
-                ),
-            }}
-        >
-            <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen
-                name="List"
-                component={List}
-                options={{ headerTitle: 'List Screen' }}
-            />
-            <Stack.Screen name="Detail" component={Item} />
-        </Stack.Navigator>
-    );
-};
-
-export default StackNavigation;
+<MaterialCommunityIcons name="react" style={style} />
+//... 
 ```
 
 
