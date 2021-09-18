@@ -750,7 +750,7 @@ export default TabNavigation;
 
 <span style="color:coral; line-height:0.8">navigations/Tab.js</span>
 
-```javascript
+```
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Mail, Meet, Settings } from '../screens/TabScreens';
@@ -801,7 +801,7 @@ export default TabNavigation;
 
 <span style="color:coral; line-height:0.8">navigations/Tab.js</span>
 
-```javascript
+```
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Mail, Meet, Settings } from '../screens/TabScreens';
