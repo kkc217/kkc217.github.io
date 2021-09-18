@@ -137,7 +137,7 @@ const TabNavigation = () => {
             />
             <Tab.Screen
                 name="Settings"
-                component={Settings}
+                component={Settings}d
                 options={
                     tabBarIcon: props => TabIcon({ ...props, name: 'settings' }),
                 }
@@ -265,7 +265,7 @@ const TabNavigation = () => {
     return (
         <Tab.Navigator
             initialRouteName="Settings"
-            tabBarOptions={{ labelPosition: 'beside-icon', showLabel: false }}
+            tabBarOptions={ labelPosition: 'beside-icon', showLabel: false }
         >
             //...
         </Tab.Navigator>
