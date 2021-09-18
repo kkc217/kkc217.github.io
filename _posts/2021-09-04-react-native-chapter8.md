@@ -750,7 +750,7 @@ export default TabNavigation;
 
 <span style="color:coral; line-height:0.8">navigations/Tab.js</span>
 
-```
+```javascript
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Mail, Meet, Settings } from '../screens/TabScreens';
@@ -768,23 +768,23 @@ const TabNavigation = () => {
             <Tab.Screen
                 name="Mail"
                 component={Mail}
-                options={{
+                options={
                     tabBarIcon: props => TabIcon({ ...props, name: 'email' }),
-                }}
+                }
             />
             <Tab.Screen
                 name="Meet"
                 component={Meet}
-                options={{
+                options={
                     tabBarIcon: props => TabIcon({ ...props, name: 'video' }),
-                }}
+                }
             />
             <Tab.Screen
                 name="Settings"
                 component={Settings}
-                options={{
+                options={
                     tabBarIcon: props => TabIcon({ ...props, name: 'settings' }),
-                }}
+                }
             />
         </Tab.Navigator>
     );
@@ -801,7 +801,7 @@ export default TabNavigation;
 
 <span style="color:coral; line-height:0.8">navigations/Tab.js</span>
 
-```
+```javascript
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Mail, Meet, Settings } from '../screens/TabScreens';
