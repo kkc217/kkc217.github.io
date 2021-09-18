@@ -277,74 +277,110 @@ const TabNavigation = () => {
 <img src="/assets/images/210919_ch08/tab_navigation_label_invisible.PNG" style="width:200px; object-fit:contain">
 
 
+<br/>
 
 
+#### <span style="font-size:1.2em; color:cornflowerblue;">- 스타일 수정하기</span>
 
+  * `tabBarOptions` 속성에 `style`의 값으로 스타일 객체를 설정하여 변경할 수 있음.
+  * `activeTintColor`와 `inactiveTintColor`를 이용해 아이콘이 선택되어 활성화된 상태의 색과 선택되지 않아 비활성화된 상태의 색을 설정할 수 있음.
 
+<span style="color:coral; line-height:0.8">navigations/Tab.js</span>
 
+```javascript
+//...
+const TabNavigation = () => {
+    return (
+        <Tab.Navigator
+            initialRouteName="Settings"
+            tabBarOptions={{
+                labelPosition: 'beside-icon',
+                showLabel: false,
+                style: {
+                    backgroundColor: '#54b7f9',
+                    borderTopColor: '#ffffff',
+                    borderTopWidth: 2,
+                },
+                activeTintColor: '#ffffff',
+                inactiveTintColor: '#0B92E9',
+            }}
+        >
+            //...
+        </Tab.Navigator>
+    );
+};
+//...
+```
 
+<br/>
 
+  * 버튼의 아이콘을 설정하기 위해 barTabIcon에 설정한 함수에는 파라미터로 size, color, focused를 가진 객체가 전달됨.
+  * `focused`는 버튼의 선택된 상태를 나타내는 값임.
+  * focused를 사용해 버튼의 활성화 상태에 따라 다른 버튼을 렌더링하거나 스타일을 변경할 수 있음.
 
+<span style="color:coral; line-height:0.8">navigations/Tab.js</span>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```javascript
+//...
+const TabNavigation = () => {
+    return (
+        <Tab.Navigator
+            initialRouteName="Settings"
+            tabBarOptions={{
+                labelPosition: 'beside-icon',
+                showLabel: false,
+                style: {
+                    backgroundColor: '#54b7f9',
+                    borderTopColor: '#ffffff',
+                    borderTopWidth: 2,
+                },
+                activeTintColor: '#ffffff',
+                inactiveTintColor: '#cfcfcf',
+            }}
+        >
+            <Tab.Screen
+                name="Mail"
+                component={Mail}
+                options={{
+                    tabBarLabel: 'Inbox',
+                    tabBarIcon: props =>
+                        TabIcon({
+                            ...props,
+                            name: props.focused ? 'email' : 'email-outline',
+                        }),
+                }}
+            />
+            <Tab.Screen
+                name="Meet"
+                component={Meet}
+                options={{
+                    tabBarIcon: props =>
+                        TabIcon({
+                            ...props,
+                            name: props.focused ? 'video' : 'video-outline',
+                        }),
+                }}
+            />
+            <Tab.Screen
+                name="Settings"
+                component={Settings}
+                options={{
+                    tabBarIcon: props =>
+                        TabIcon({
+                            ...props,
+                            name: props.focused ? 'settings' : 'settings-outline',
+                        }),
+                }}
+            />
+        </Tab.Navigator>
+    );
+};
+//...
+```
 
 
 <br/>
 
-
----
-
-
-## 참고  
-* <span style="opacity:0.5">비동기</span>  
-https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/
-
-* <span style="opacity:0.5">async &. await</span>  
-https://joshua1988.github.io/web-development/javascript/js-async-await/#async--await%EB%8A%94-%EB%AD%94%EA%B0%80%EC%9A%94
 
 <div style="font-size:13px; text-align:right">
 <br/><br/>
