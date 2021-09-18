@@ -543,31 +543,16 @@ const StackNavigation = () => {
 
 <span style="color:coral; line-height:0.8">navigations/Stack.js</span>
 
-```javascript
-//...
-headerBackImage: ({ tintColor }) => {
-    const style = {
-        marginRight: 5,
-        marginLeft: Platform.OS === 'ios' ? 11 : 0,
-    };
-    return (
-        <MaterialCommunityIcons
-            name="keyboard-backspace"
-            size={30}
-            color={tintColor}
-            style={style}
-        />
-    );
-},
-//... 
-```
+
 
 <br/>
 
   * 헤더의 왼쪽 버튼 전체를 변경하고 싶다면 `headerLeft`에 컴포넌트를 반환하는 `함수`를 지정.
   * `headerRight`에 컴포넌트를 반환하는 `함수`를 지정하면 헤더의 오른쪽에 원하는 컴포넌트를 렌더링할 수 있음.
 
-  *
+  <br/>
+
+  * 
 
 
 
