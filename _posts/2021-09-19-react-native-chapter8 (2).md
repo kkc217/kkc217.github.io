@@ -233,8 +233,24 @@ const TabNavigation = () => {
   * 라벨을 버튼 아이콘의 아래가 아닌 아이콘 `옆에` 렌더링되도록 변경할 수 있음.
   * `labelPosition`을 사용하며, 속성값으로 `below-icon`과 `beside-icon`만 설정할 수 있음.
 
+<span style="color:coral; line-height:0.8">navigations/Tab.js</span>
 
+```javascript
+//...
+const TabNavigation = () => {
+    return (
+        <Tab.Navigator
+            initialRouteName="Settings"
+            tabBarOptions={{ labelPosition: 'beside-icon' }}
+        >
+            //...
+        </Tab.Navigator>
+    );
+};
+//...
+```
 
+<img src="/assets/images/210919_ch08/tab_navigation_label_position.PNG" style="width:200px; object-fit:contain">
 
 
 
