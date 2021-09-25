@@ -614,6 +614,182 @@ const Login = ({ navigation }) => {
 <img src="/assets/images/210920_ch09/login_logo.PNG" style="width:250px; object-fit:contain">
 
 
+<br/>
+
+
+#### <span style="font-size:1.2em; color:cornflowerblue;">- Input 컴포넌트</span>
+
+아이디와 비밀번호를 `입력`받을 수 있도록 함.
+
+<span style="color:coral; line-height:0.8">theme.js</span>
+
+```javascript
+//...
+export const theme = {
+    background: colors.white,
+    text: colors.black,
+
+    imageBackground: colors.grey_0,
+    label: colors.grey_1,
+    inputPlaceholder: colors.grey_1,
+    imputBorder: colors.grey_1,
+};
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">comoponents/Input.js</span>
+
+```javascript
+import React, { useState, forwardRef } from 'react';
+import styled from 'styled-components/native';
+import PropTypes from 'prop-types';
+
+const Container = styled.View`
+    flex-direction: column;
+    width: 100%;
+    margin: 10px 0;
+`;
+
+const Label = styled.Text`
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: ${({ theme, isFocused }) => (isFocused ? theme.text : theme.label)};
+`;
+
+const StyledTextInput = styled.TextInput.attrs(({ theme }) => ({
+    placeholderTextColor: theme.inputPlaceholder,
+}))`
+    background-color: ${({ theme }) => theme.background};
+    color: ${({ theme}) => theme.text};
+    padding: 20px 10px;
+    font-size: 16px;
+    border: 1px solid
+        ${({ theme, isFocused }) => (isFocused ? theme.text : theme.inputBorder)};
+    border-radius: 4px;
+`;
+
+const Input = forwardRef(
+    (
+        {
+            label,
+            value,
+            onChangeText,
+            onSubmitEditing,
+            onBlur,
+            placeholder,
+            isPassword,
+            returnKeyType,
+            maxLength,
+        },
+        ref
+    ) => {
+    const [isFocused, setIsFocused] = useState(false);
+
+    return (
+        <Container>
+            <Label isFocused={isFocused}>{label}</Label>
+            <StyledTextInput
+                ref={ref}
+                isFocused={isFocused}
+                value={value}
+                onChangeText={onChangeText}
+                onSubmitEditing={onSubmitEditing}
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => {
+                    setIsFocused(false);
+                    onBlur();
+                }}
+                placeholder={placeholder}
+                secureTextEntry={isPassword}
+                returnKeyType={returnKeyType}
+                maxLength={maxLength}
+                autoCapitalize="none"
+                autoCorrect={false}
+                textContentType="none" // iOS only
+                underlineColorAndroid="transparent" // Android only
+            />
+        </Container>
+        );
+    }
+);
+
+Input.defaultProps = {
+    onBlur: () => {},
+};
+
+Input.propTypes = {
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    onChangeText: PropTypes.func.isRequired,
+    onSubmitEditing: PropTypes.func.isRequired,
+    onBlur: PropTypes.func,
+    placeholder: PropTypes.string,
+    isPassword: PropTypes.bool,
+    returnKeyType: PropTypes.oneOf(['done', 'next']),
+    maxLength: PropTypes.number,
+};
+
+export default Input;
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">comoponents/index.js</span>
+
+```javascript
+import Image from './Image';
+import Input from './Input';
+
+export { Image, Input };
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">screens/Login.js</span>
+
+```javascript
+import React, { useState, useRef } from 'react';
+//...
+const Login = ({ navigation }) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const passwordRef = useRef();
+
+    return (
+        <Container>
+            <Image url={images.logo} imageStyle={{ borderRadius: 8 }} />
+            <Input
+                label="Email"
+                value={email}
+                onChangeText={text => setEmail(text)}
+                onSubmitEditing={() => passwordRef.current.focus()}
+                placeholder="Email"
+                returnKeyType="next"
+            />
+            <Input
+                ref={passwordRef}
+                //...
+            />
+        </Container>
+    );
+};
+//...
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
