@@ -434,7 +434,7 @@ const App = () => {
 <br/>
 
 
-#### <span style="color:#cd853f">Plus.</span> AppLoading Error
+### <span style="color:#cd853f">Plus.</span> AppLoading Error
 
   * 책에 쓰여진대로 AppLoading 컴포넌트를 사용할 경우 아래 사진과 같이 오류가 발생함.
   * expo SDK 40부터 AppLoading이 기본 컴포넌트에서 빠져서 생기는 오류.
@@ -456,6 +456,173 @@ expo install expo-app-loading
 ```javascript
 import AppLoading from 'expo-app-loading'
 ```
+
+
+<br/>
+
+
+### 2. 로그인 화면
+
+  * 이메일과 비밀번호를 입력받을 화면을 만듦.
+  * `로고`를 렌더링하는 컴포넌트, 사용자의 `입력`을 받는 컴포넌트, `클릭`과 `이벤트`가 발생하는 컴포넌트가 필요.
+
+#### <span style="font-size:1.2em; color:cornflowerblue;">- Image 컴포넌트</span>
+
+  * url을 전달받아 원격에 있는 이미지를 렌더링함.
+  * 로그인 화면에서는 Image 컴포넌트를 이용해 앱의 로고를 렌더링함.
+  * `theme.js`파일에 Image 컴포넌트의 배경색을 정의함.
+
+<span style="color:coral; line-height:0.8">theme.js</span>
+
+```javascript
+//...
+export const theme = {
+    background: colors.white,
+    text: colors.black,
+
+    imageBackground: colors.grey_0,
+};
+
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">components/Image.js</span>
+
+```javascript
+import React from 'react';
+import styled from 'styled-components/native';
+import PropTypes from 'prop-types';
+
+const Container = styled.View`
+    align-self: center;
+    margin-bottom: 30px;
+`;
+
+const StyledImage = styled.Image`
+    background-color: ${({ theme }) => theme.imageBackground};
+    width: 100px;
+    height: 100px;
+`;
+
+const Image = ({ url, imageStyle }) => {
+    return (
+        <Container>
+            <StyledImage source={{ uri: url }} style={imageStyle} />
+        </Container>
+    );
+};
+
+Image.propTypes = {
+    uri: PropTypes.string,
+    imageStyle: PropTypes.object,
+};
+
+export default Image;
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">components/index.js</span>
+
+```javascript
+import Image from './Image';
+
+export { Image };
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">screens/Login.js</span>
+
+```javascript
+//...
+const Login = ({ navigation }) => {
+    return (
+        <Container>
+            <Image />
+            <Button title="Signup" onPress={() => navigation.navigate('Signup')} />
+        </Container>
+    );
+};
+//...
+```
+
+
+<br/>
+
+
+#### <span style="font-size:1.2em; color:cornflowerblue;">- 로고 적용하기</span>
+
+  * 로고 이미지를 파이어베이스 스토리지에 업로드해 불러오는 방식으로 사용.
+
+  <span style="color:coral; font-size:0.8em; font-weight:bold">! 이미지 주소의 쿼리 스트링에서 token 부분은 제외하고 사용해야 함.
+
+<span style="color:coral; line-height:0.8">utils/images.js</span>
+
+```javascript
+const prefix =
+    'https://firebasestorage.googleapis.com/v0/b/react-native-simple-chat-75301.appspot.com/o';
+
+export const images = {
+    logo: `${prefix}/logo.png?alt=media`,
+};
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">App.js</span>
+
+```javascript
+//...
+import { images } from './utils/images';
+//...
+const App = () => {
+    const [isReady, setIsReady] = useState(false);
+
+    const _loadAssets = async () => {
+        const imageAssets = cacheImages([
+            require('../assets/splash.png'),
+            ...Object.values(images),
+        ]);
+        //...
+    };
+    //...
+};
+//...
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">screens/Login.js</span>
+
+```javascript
+//...
+import { images } from '../utils/images';
+//...
+const Login = ({ navigation }) => {
+    return (
+        <Container>
+            <Image url={images.logo} imageStyle={{ borderRadius: 8 }} />
+            <Button title="Signup" onPress={() => navigation.navigate('Signup')} />
+        </Container>
+    );
+};
+//...
+```
+
+<img src="/assets/images/210920_ch09/login_logo.PNG" style="width:250px; object-fit:contain">
+
+
+
+
+
+
+
+
+
+
+
 
 
 
