@@ -200,7 +200,7 @@ const app = firebase.initializeApp(config);
 ```javascript
 import React, { useState } from 'react';
 import { StatusBar, Image } from 'react-native';
-import { AppLoading } from 'expo';
+import AppLoading from 'expo-app-loading';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import { ThemeProvider } from 'styled-components/native';
@@ -428,15 +428,34 @@ const App = () => {
 //...
 ```
 
+<img src="/assets/images/210920_ch09/authentication_navigation.PNG" style="width:500px; object-fit:contain">
 
 
+<br/>
 
 
+#### <span style="color:#cd853f">Plus.</span> AppLoading Error
 
+  * 책에 쓰여진대로 AppLoading 컴포넌트를 사용할 경우 아래 사진과 같이 오류가 발생함.
+  * expo SDK 40부터 AppLoading이 기본 컴포넌트에서 빠져서 생기는 오류.
 
+```javascript
+import { AppLoading } from 'expo';
+```
 
+<img src="/assets/images/210920_ch09/AppLoading_error.PNG" style="width:250px; object-fit:contain">
 
+<br/>
 
+<span style="color:coral">해결 방법</span> → 따로 패키지를 다운받아서 사용해야 함.
+
+```
+expo install expo-app-loading
+```
+
+```javascript
+import AppLoading from 'expo-app-loading'
+```
 
 
 
@@ -487,11 +506,9 @@ const App = () => {
 
 
 ## 참고  
-* <span style="opacity:0.5">비동기</span>  
-https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/
+* <span style="opacity:0.5">AppLoading Error</span>  
+[https://sinawi.tistory.com/350](https://sinawi.tistory.com/350)
 
-* <span style="opacity:0.5">async &. await</span>  
-https://joshua1988.github.io/web-development/javascript/js-async-await/#async--await%EB%8A%94-%EB%AD%94%EA%B0%80%EC%9A%94
 
 <div style="font-size:13px; text-align:right">
 <br/><br/>
