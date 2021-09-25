@@ -793,7 +793,7 @@ const Login = ({ navigation }) => {
 
 (1) `TouchableWithoutFeedback 컴포넌트`와 `Keyboard API`를 이용해 다른 곳을 터치하면 키보드가 사라지도록 함.
   
-<span style="color:#f7df1e">TouchableWithoutFeedback</span>
+<span style="color:#f7df1e">TouchableWithoutFeedback 컴포넌트</span>
 
   * `클릭`에 대해 상호 작용은 하지만 `스타일 속성`이 없음.
   * 반드시 `하나`의 자식 컴포넌트를 가져야 함.
@@ -825,25 +825,334 @@ const Login = ({ navigation }) => {
 //...
 ```
 
+<br/>
+
+(2) `react-native-keyboard-aware-scroll-view` 라이브러리를 이용해 키보드가 내용을 가리지 않으면서 (1)의 기능도 하도록 함.
+  
+<span style="color:#f7df1e">react-native-keyboard-aware-scroll-view 라이브러리</span>
+
+  * 포커스가 있는 `TextInput 컴포넌트`의 위치로 `자동 스크롤`되는 기능 등 Input 컴포넌트에 필요한 기능들을 제공함.
+  * 라이브러리를 따로 설치하고 사용해야 함.
+  * `extraScrollHeight`의 값을 조절해 원하는 위치로 스크롤되도록 설정할 수 있음.
+
+```
+npm install react-native-keyboard-aware-scroll-view
+```
+
+<span style="color:coral; line-height:0.8">screens/Login.js</span>
+
+```javascript
+//...
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+//...
+const Login = ({ navigation }) => {
+    //...
+    return (
+        <KeyboardAwareScrollView
+            contentContainerStyle={{ flex: 1}}
+            extraScrollHeight={20}
+        >
+            <Container>
+                //...
+            </Container>
+        </KeyboardAwareScrollView>
+    );
+};
+//...
+```
 
 
+<br/>
 
 
+#### <span style="font-size:1.2em; color:cornflowerblue;">- 오류 메시지</span>
+
+  * `Input 컴포넌트`에 입력되는 값이 올바른 형태인지 확인하고, 잘못된 값이 입력되면 오류 메시지를 보여주는 기능을 추가함.
+  * 올바른 이메일 형식인지 `확인`하는 함수와 입력된 문자열에 `공백`을 모두 제거하는 함수를 만들어 사용함.
+
+<span style="color:coral; line-height:0.8">theme.js</span>
+
+```javascript
+const colors = {
+    white: '#ffffff',
+    black: '#000000',
+    grey_0: '#d5d5d5',
+    grey_1: '#a6a6a6',
+    red: '#e84118',
+    blue: '#3679fe',
+};
+//...
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">utils/common.js</span>
+
+```javascript
+export const validateEmail = email => {
+    const regex = /^[0-9?A-z0-9?]+(\.)?[0-9?A-z0-9?]+@[0-9?A-z]+\.[A-z]{2}.?[A-z]{0,3}$/;
+    return regex.test(email);
+};
+
+export const removeWhitespace = text => {
+    const regex = /\s/g;
+    return text.replace(regex, '');
+};
+```
 
 
+<span style="color:coral; line-height:0.8">screens/Login.js</span>
+
+```javascript
+//...
+import { validateEmail, removeWhitespace } from '../utils/common';
+//...
+const ErrorText = styled.Text`
+    align-items: flex-start;
+    width: 100%;
+    height: 20px;
+    margin-bottom: 10px;
+    line-height: 20px;
+    color: ${({ theme }) => theme.errorText};
+`;
+
+const Login = ({ navigation }) => {
+   //...
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const _handleEmailChange = email => {
+        const changedEmail = removeWhitespace(email);
+        setEmail(changedEmail);
+        setErrorMessage(
+            validateEmail(changedEmail) ? '' : 'Please verify your email.'
+        );
+    };
+
+    const _handlePasswordChange = password => {
+        setPassword(removeWhitespace(password));
+    };
+
+    return (
+        <KeyboardAwareScrollView
+            contentContainerStyle={{ flex: 1}}
+            extraScrollHeight={20}
+        >
+            <Container>
+                <Image url={images.logo} imageStyle={{ borderRadius: 8 }} />
+                <Input
+                    //...
+                    value={email}
+                    onChangeText={_handleEmailChange}
+                    //...
+                />
+                <Input
+                    //...
+                    value={password}
+                    onChangeText={_handlePasswordChange}
+                    //...
+                />
+                <ErrorText>{errorMessage}</ErrorText>
+            </Container>
+        </KeyboardAwareScrollView>
+    );
+};
+//...
+```
 
 
+<br/>
 
 
+#### <span style="font-size:1.2em; color:cornflowerblue;">- Button 컴포넌트</span>
+
+  * `isFilled`의 값에 따라 버튼 내부를 채우거나 투명하게 처리하는 Button 컴포넌트를 만듦.
+  * 사용되는 곳에 따라 버튼의 스타일을 수정하기 위해 `containerStyle`을 props로 전달받아 적용하도록 작성함.
+  * `로그인 버튼`을 클릭했을 때 하는 작업과 비밀번호를 입력받는 Input 컴포넌트의 `onSubmitEditing 함수`가 하는 역할이 같으므로 동일한 작업이 수행되도록 함.
+  * 이메일과 비밀번호가 입력되지 않으면 Button 컴포넌트가 동작하지 않게 동작하기 위해서, props를 통해 전달되는 `disabled`의 값을 사용함.
+  * useEffect를 이용해 오류 메시지가 없으면 내용이 들어있을 때만 버튼이 활성화되도록 함.
+
+<span style="color:coral; line-height:0.8">theme.js</span>
+
+```javascript
+//...
+export const theme = {
+    //...
+    buttonBackground: colors.blue,
+    buttonTitle: colors.white,
+    buttonUnfilledTitle: colors.blue,
+};
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">components/Button.js</span>
+
+```javascript
+import React from 'react';
+import styled from 'styled-components/native';
+import PropTypes from 'prop-types';
+
+const TRANSPARENT = 'transparent';
+
+const Container = styled.TouchableOpacity`
+    background-color: ${({ theme, isFilled }) =>
+        isFilled ? theme.buttonBackground : TRANSPARENT};
+    align-items: center;
+    border-radius: 4px;
+    width: 100%;
+    padding: 10px;
+    opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
+`;
+
+const Title = styled.Text`
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    color: ${({ theme, isFilled }) =>
+        isFilled ? theme.buttonTitle : theme.buttonUnfilledTitle};
+`;
+
+const Button = ({ containerStyle, title, onPress, isFilled, disabled }) => {
+    return (
+        <Container
+            style={containerStyle}
+            onPress={onPress}
+            isFilled={isFilled}
+            disabled={disabled}
+            >
+            <Title isFilled={isFilled}>{title}</Title>
+        </Container>
+    );
+};
+
+Button.defaultProps = {
+    isFilled: true,
+};
+
+Button.propTypes = {
+    containerStyle: PropTypes.object,
+    title: PropTypes.string,    
+    onPress: PropTypes.func.isRequired,
+    isFilled: PropTypes.bool,
+    disabled: PropTypes.bool,
+};
+
+export default Button;
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">conponents/index.js</span>
+
+```javascript
+import Image from './Image';
+import Input from './Input';
+import Button from './Button';
+
+export { Image, Input, Button };
+```
+
+<br/>
+
+<span style="color:coral; line-height:0.8">screens/Login.js</span>
+
+```javascript
+import React, { useState, useRef, useEffect } from 'react';
+import styled from 'styled-components/native';
+import { Image, Input, Button } from '../components';
+//...
+const Login = ({ navigation }) => {
+    //...
+    const _handleLoginButtonPress = () => {};
+    const [disabled, setDisabled] = useState(true);
+
+    useEffect(() => {
+        setDisabled(!(email && password && !errorMessage));
+    }, [email, password, errorMessage]);
+    //...
+    return (
+        <KeyboardAwareScrollView
+            contentContainerStyle={{ flex: 1}}
+            extraScrollHeight={20}
+        >
+            <Container>
+                <Image url={images.logo} imageStyle={{ borderRadius: 8 }} />
+                <Input
+                    label="Email"
+                    value={email}
+                    onChangeText={_handleEmailChange}
+                    onSubmitEditing={() => passwordRef.current.focus()}
+                    placeholder="Email"
+                    returnKeyType="next"
+                />
+                <Input
+                    ref={passwordRef}
+                    label="Password"
+                    value={password}
+                    onChangeText={_handlePasswordChange}
+                    onSubmitEditing={_handleLoginButtonPress}
+                    placeholder="Password"
+                    returnKeyType="done"
+                    isPassword
+                />
+                <ErrorText>{errorMessage}</ErrorText>
+                <Button
+                    title="Login"
+                    onPress={_handleLoginButtonPress}
+                    disabled={disabled}
+                />
+                <Button
+                    title="Sign up with email"
+                    onPress={() => navigation.navigate('Signup')}
+                    isFilled={false}
+                />
+            </Container>
+        </KeyboardAwareScrollView>
+    );
+};
+//...
+```
 
 
+<br/>
 
 
+#### <span style="font-size:1.2em; color:cornflowerblue;">- 노치 디자인 대응</span>
 
+  * react-native-safe-area-context 라이브러리가 제공하는 `useSafeAreaInsets Hooks 함수`를 이용하여 노치 디자인에 따라 다른 `padding`값을 얻을 수 있음.
 
+<span style="color:coral; line-height:0.8">screens/Login.js</span>
 
+```javascript
+//...
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-
+const Container = styled.View`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    background-color: ${({ theme }) => theme.background};
+    padding: 0 20px;
+    padding-top: ${({ insets: { top } }) => top}px;
+    padding-bottom: ${({ insets: { bottom } }) => bottom}px;
+`;
+//...
+const Login = ({ navigation }) => {
+    const insets = useSafeAreaInsets();
+    //...
+    return (
+        <KeyboardAwareScrollView
+            contentContainerStyle={{ flex: 1}}
+            extraScrollHeight={20}
+        >
+            <Container insets={insets}>
+                //...
+            </Container>
+        </KeyboardAwareScrollView>
+    );
+};
+//...
+```
 
 
 
