@@ -778,12 +778,52 @@ const Login = ({ navigation }) => {
 //...
 ```
 
+<img src="/assets/images/210920_ch09/login_input.PNG" style="width:250px; object-fit:contain">
 
 
+<br/>
 
 
+#### <span style="font-size:1.2em; color:cornflowerblue;">- 키보드 감추기</span>
 
+  * 입력하는 도중에 다른 곳을 터치하면 키보드가 사라지게 함.
+  * 키보드가 내용을 가리고 있다면 스크롤을 통해 입력되는 모습을 볼 수 있도록 함.
 
+<br/>
+
+(1) `TouchableWithoutFeedback 컴포넌트`와 `Keyboard API`를 이용해 다른 곳을 터치하면 키보드가 사라지도록 함.
+  
+<span style="color:#f7df1e">TouchableWithoutFeedback</span>
+
+  * `클릭`에 대해 상호 작용은 하지만 `스타일 속성`이 없음.
+  * 반드시 `하나`의 자식 컴포넌트를 가져야 함.
+
+<br/>
+
+<span style="color:#f7df1e">Keyboard API</span>
+
+  * 리액트 네이티브에서 제공하는 키보드 관련 API
+  * 키보드 상태에 따른 이벤트 등록에 많이 사용됨.
+  * Keyboard API에서 제공하는 `dismiss 함수`는 활성화된 키보드를 닫는 기능임.
+
+<span style="color:coral; line-height:0.8">screens/Login.js</span>
+
+```javascript
+//...
+import { TouchableWithoutFeedback, Keyboard } from 'react-native';
+//...
+const Login = ({ navigation }) => {
+    //...
+    return (
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <Container>
+                //...
+            </Container>
+        </TouchableWithoutFeedback>
+    );
+};
+//...
+```
 
 
 
